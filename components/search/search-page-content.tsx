@@ -228,7 +228,7 @@ export function SearchPageContent() {
                 <Phone className="w-3.5 h-3.5" /> Call Us for Help
               </a>
               <Link href="/quote" className="w-40 inline-block hover:-translate-y-1 transition-transform duration-200">
-                <img src="/images/button-request-free-quote.png" alt="Request Free Quote" className="w-full h-auto drop-shadow-lg" />
+                <img src="/images/buttons/get-quote-dark.png" alt="Get Quote" className="w-full h-auto drop-shadow-lg" />
               </Link>
             </div>
           </div>
@@ -309,7 +309,7 @@ export function SearchPageContent() {
                   <Phone className="w-3.5 h-3.5" /> Call (888) 818-5001
                 </a>
                 <Link href="/quote" className="w-40 inline-block hover:-translate-y-1 transition-transform duration-200">
-                  <img src="/images/button-request-free-quote.png" alt="Request Free Quote" className="w-full h-auto drop-shadow-lg" />
+                  <img src="/images/buttons/get-quote-dark.png" alt="Get Quote" className="w-full h-auto drop-shadow-lg" />
                 </Link>
               </div>
             </div>

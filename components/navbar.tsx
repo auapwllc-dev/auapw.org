@@ -184,7 +184,7 @@ export function Navbar() {
 
             {/* Cart indicator */}
             <Link href="/cart" className="relative hidden sm:flex items-center justify-center w-9 h-9 rounded-lg hover:bg-white/10 transition-colors" title="Cart">
-              <img src="/images/icon-cart-outline.png" alt="Cart" className="w-5 h-5 object-contain" />
+              <img src="/images/icons/cart-metallic.png" alt="Cart" className="w-6 h-6 object-contain" />
               {cartItems > 0 && (
                 <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-blue-500 text-white text-xs font-bold flex items-center justify-center">
                   {cartItems}
@@ -194,7 +194,7 @@ export function Navbar() {
 
             {/* Desktop: Premium GET QUOTE button (hidden on mobile) */}
             <Link href="/quote" className="hidden sm:flex flex-shrink-0 hover:-translate-y-1 transition-transform duration-200">
-              <img src="/images/button-get-quote-header.png" alt="Get Quote" className="h-10 w-auto object-contain drop-shadow-lg" />
+              <img src="/images/buttons/get-quote-dark.png" alt="Get Quote" className="h-10 w-auto object-contain drop-shadow-lg" />
             </Link>
 
             {/* Mobile: Phone and Email icons (shown only on mobile) */}

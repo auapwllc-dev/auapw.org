@@ -89,17 +89,14 @@ export function Footer() {
               Premium quality used auto parts from 2,000+ verified yards nationwide. 30-180 day warranty on every part.
             </p>
             <div className="space-y-3 sm:space-y-4">
-              <a href="tel:8888185001" className="inline-block hover:-translate-y-1 transition-transform duration-200 w-full">
-                <img src="/images/button-call-us-5001.png" alt="Call Us (888) 818-5001" className="w-full h-auto drop-shadow-lg" />
-              </a>
               <a href="mailto:support@auapw.org" className="inline-block hover:-translate-y-1 transition-transform duration-200 w-full">
-                <img src="/images/button-support-email.png" alt="Email Us support@auapw.org" className="w-full h-auto drop-shadow-lg" />
+                <img src="/images/buttons/support-email-us.png" alt="Email Us support@auapw.org" className="w-full h-auto drop-shadow-lg" />
               </a>
               <a href="mailto:info@auapw.org" className="inline-block hover:-translate-y-1 transition-transform duration-200 w-full">
-                <img src="/images/button-info-email.png" alt="Email Us info@auapw.org" className="w-full h-auto drop-shadow-lg" />
+                <img src="/images/buttons/info-email-us.png" alt="Email Us info@auapw.org" className="w-full h-auto drop-shadow-lg" />
               </a>
               <a href="https://maps.google.com/?q=107+Myrtle+Ave+Woodbine+NJ+08270" target="_blank" rel="noopener noreferrer" className="inline-block hover:-translate-y-1 transition-transform duration-200 w-full">
-                <img src="/images/button-location-address.png" alt="Location: 107 Myrtle Ave, Woodbine, NJ 08270" className="w-full h-auto drop-shadow-lg" />
+                <img src="/images/buttons/location-address.png" alt="Location: 107 Myrtle Ave, Woodbine, NJ 08270" className="w-full h-auto drop-shadow-lg" />
               </a>
             </div>
           </div>

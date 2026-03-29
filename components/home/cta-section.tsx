@@ -19,15 +19,12 @@ export function CTASection() {
         <p className="text-muted-foreground text-sm max-w-[440px] mx-auto mb-10 leading-relaxed">
           Search our nationwide inventory network or speak directly with our team. Every request receives a response within 24 hours.
         </p>
-        <div className="flex flex-wrap gap-3 justify-center items-center">
-          <Link href="/search" className="w-44 sm:w-52 inline-block hover:-translate-y-1 transition-transform duration-200">
-            <img src="/images/button-find-your-part.jpg" alt="Search Parts Now" className="w-full h-auto drop-shadow-xl" />
+        <div className="flex flex-wrap gap-4 justify-center items-center">
+          <Link href="/search" className="w-52 sm:w-64 inline-block hover:-translate-y-1 transition-transform duration-200">
+            <img src="/images/buttons/find-your-part.jpg" alt="Find Your Part" className="w-full h-auto drop-shadow-xl rounded-lg" />
           </Link>
-          <a href="tel:8888185001" className="w-40 sm:w-44 inline-block hover:-translate-y-0.5 transition-transform">
-            <img src="/images/button-call-now.png" alt="Call Now (888) 818-5001" className="w-full h-auto rounded-full shadow-lg shadow-black/50" />
-          </a>
           <Link href="/quote" className="w-44 sm:w-52 inline-block hover:-translate-y-1 transition-transform duration-200">
-            <img src="/images/button-request-free-quote.png" alt="Request Free Quote" className="w-full h-auto drop-shadow-xl" />
+            <img src="/images/buttons/get-quote-dark.png" alt="Get Quote" className="w-full h-auto drop-shadow-xl" />
           </Link>
         </div>
       </div>

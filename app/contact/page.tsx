@@ -56,11 +56,14 @@ export default function ContactPage() {
                 </a>
               ))}
 
-              <div className="glass-card rounded-sm p-6 mt-2">
-                <div className="metal-line mb-5" />
-                <p className="text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-1.5">Prefer to Call?</p>
-                <a href="tel:8888185001" className="text-2xl font-bold text-foreground block mb-1">(888) 818-5001</a>
-                <p className="text-[11px] text-muted-foreground">Mon-Sat 8am-6pm PST</p>
+              <div className="glass-card rounded-sm p-6 mt-2 flex flex-col gap-4">
+                <div className="metal-line mb-2" />
+                <a href="mailto:support@auapw.org" className="inline-block hover:-translate-y-1 transition-transform duration-200">
+                  <img src="/images/buttons/support-email-us.png" alt="Email Us support@auapw.org" className="w-full h-auto drop-shadow-lg" />
+                </a>
+                <a href="https://maps.google.com/?q=107+Myrtle+Ave+Woodbine+NJ+08270" target="_blank" rel="noopener noreferrer" className="inline-block hover:-translate-y-1 transition-transform duration-200">
+                  <img src="/images/buttons/location-address.png" alt="Location: 107 Myrtle Ave, Woodbine, NJ 08270" className="w-full h-auto drop-shadow-lg" />
+                </a>
               </div>
             </div>
 

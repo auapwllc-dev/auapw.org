@@ -246,9 +246,9 @@ export function QuoteForm({ defaultPart = "", compact = false }: QuoteFormProps)
           <div className="mt-auto pt-3 sm:pt-4">
             <button
               type="submit"
-              className="w-full relative overflow-hidden rounded-full transition-all hover:shadow-lg hover:shadow-black/40"
+              className="w-full relative overflow-hidden rounded-lg transition-all hover:shadow-lg hover:shadow-black/40 hover:-translate-y-1"
             >
-              <img src="/images/button-get-quote.png" alt="Get A Quote" className="w-full h-auto block" />
+              <img src="/images/buttons/get-quote-dark.png" alt="Get A Quote" className="w-full h-auto block" />
             </button>
             <p className="text-[9px] sm:text-[10px] text-muted-foreground mt-2 sm:mt-3 leading-relaxed">
               Clicking the button will open your email client with your quote details pre-filled to send to {CONTACT_EMAIL}.

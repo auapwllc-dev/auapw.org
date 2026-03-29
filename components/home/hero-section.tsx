@@ -165,7 +165,7 @@ export function HeroSection() {
                   <span className="text-sm font-bold tracking-wide text-primary uppercase">Search Your Part</span>
                   <p className="text-sm font-bold tracking-wide text-foreground leading-relaxed">Enter your vehicle year, make, model, and the part you need to get matched results instantly.</p>
                   <Link href="/parts" className="mt-auto w-full inline-block hover:-translate-y-1 transition-transform duration-200">
-                    <img src="/images/button-find-your-part-silver.png" alt="Find Your Part" className="w-full h-auto drop-shadow-xl" />
+                    <img src="/images/buttons/find-your-part.jpg" alt="Find Your Part" className="w-full h-auto drop-shadow-xl" />
                   </Link>
                 </div>
 
@@ -175,7 +175,7 @@ export function HeroSection() {
                   <span className="text-sm font-bold tracking-wide text-primary uppercase">Get a Free Quote</span>
                   <p className="text-sm font-bold tracking-wide text-foreground leading-relaxed">Receive a transparent, no-obligation quote from our verified network with clear pricing upfront.</p>
                   <Link href="/quote" className="mt-auto w-full inline-block hover:-translate-y-1 transition-transform duration-200">
-                    <img src="/images/button-get-quote-envelope.png" alt="Get Quote" className="w-full h-auto drop-shadow-xl" />
+                    <img src="/images/buttons/get-quote-dark.png" alt="Get Quote" className="w-full h-auto drop-shadow-xl" />
                   </Link>
                 </div>
 
@@ -195,7 +195,7 @@ export function HeroSection() {
                   <span className="text-sm font-bold tracking-wide text-primary uppercase">Fast Delivery</span>
                   <p className="text-sm font-bold tracking-wide text-foreground leading-relaxed">Your part ships same day when available, delivered directly to your door or local shop.</p>
                   <a href="mailto:support@auapw.org" className="mt-auto w-full inline-block hover:-translate-y-1 transition-transform duration-200">
-                    <img src="/images/button-support-email-us.png" alt="Email Us support@auapw.org" className="w-full h-auto drop-shadow-xl" />
+                    <img src="/images/buttons/support-email-us.png" alt="Email Us support@auapw.org" className="w-full h-auto drop-shadow-xl" />
                   </a>
                 </div>
 
