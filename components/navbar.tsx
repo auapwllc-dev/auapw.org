@@ -5,7 +5,7 @@ import { Menu, X, Zap, ShoppingCart, Heart, Home, ChevronDown, Globe, Sun, Moon 
 import { useState, useEffect } from "react"
 import { BrandWordmark } from "@/components/brand-wordmark"
 import { Logo } from "@/components/logo"
-import { useTheme } from "next-themes"
+import { useTheme } from "@/components/theme-provider"
 import { useCartStore } from "@/lib/stores/cart-store"
 import { useWishlistStore } from "@/lib/stores/wishlist-store"
 import {
@@ -23,8 +23,13 @@ export function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0)
   const cartItems = useCartStore((state) => state.getTotalItems())
   const wishlistCount = useWishlistStore((state) => state.getCount())
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+
+  // Toggle between light and dark
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+  }
 
   // Handle scroll hide/show
   useEffect(() => {
@@ -88,10 +93,6 @@ export function Navbar() {
     { label: "Body & Interior", href: "/used-body-parts" },
     { label: "Exhaust System", href: "/used-exhaust-parts" },
   ]
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark")
-  }
 
   return (
     <nav 
@@ -227,7 +228,7 @@ export function Navbar() {
                 className="hidden sm:flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-secondary/50 border border-border/50 hover:bg-secondary/80 transition-colors"
                 aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
               >
-                {theme === "dark" ? (
+                {resolvedTheme === "dark" ? (
                   <Sun className="w-5 h-5 lg:w-6 lg:h-6 text-yellow-400" />
                 ) : (
                   <Moon className="w-5 h-5 lg:w-6 lg:h-6 text-slate-700" />
@@ -309,9 +310,9 @@ export function Navbar() {
                   <button
                     onClick={toggleTheme}
                     className="flex items-center justify-center w-12 h-12 rounded-xl bg-background border border-border hover:bg-secondary/50 transition-colors"
-                    aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+aria-label={`Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode`}
                   >
-                    {theme === "dark" ? (
+                    {resolvedTheme === "dark" ? (
                       <Sun className="w-6 h-6 text-yellow-400" />
                     ) : (
                       <Moon className="w-6 h-6 text-slate-700" />
