@@ -293,10 +293,10 @@ export function Footer() {
                       { label: "Terms of Service", href: "/terms" },
                       { label: "Shipping Policy", href: "/shipping-policy" },
                       { label: "Return Policy", href: "/return-policy" },
-                      { label: "Warranty Info", href: "/warranty" },
                       { label: "Cookie Policy", href: "/cookie-policy" },
                       { label: "Disclaimer", href: "/disclaimer" },
-                      { label: "Accessibility", href: "/accessibility" },
+                      { label: "Acceptable Use", href: "/acceptable-use" },
+                      { label: "Contact Us", href: "/contact" },
                     ].map(({ label, href }) => (
                       <li key={label}>
                         <Link href={href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -323,7 +323,7 @@ export function Footer() {
                 <span className="text-border">|</span>
                 <Link href="/privacy-policy" className="hover:text-primary transition-colors">Privacy</Link>
                 <span className="text-border">|</span>
-                <Link href="/sitemap" className="hover:text-primary transition-colors">Sitemap</Link>
+                <Link href="/sitemap-page" className="hover:text-primary transition-colors">Sitemap</Link>
               </div>
             </div>
           </div>

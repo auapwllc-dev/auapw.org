@@ -4,7 +4,7 @@ import { BrandLogosSection } from "@/components/brand-logos"
 
 import { QuoteForm } from "@/components/quote-form"
 import Image from "next/image"
-import { Phone, MapPin, Clock } from "lucide-react"
+import { Phone, MapPin, Clock, Mail } from "lucide-react"
 
 export const metadata = {
   title: "Contact Us - AUAPW.ORG",
@@ -37,17 +37,13 @@ export default function ContactPage() {
             <div className="flex flex-col gap-3 sm:gap-4 order-2 lg:order-1">
               {[
                 { icon: Phone, title: "(888) 818-5001", sub: "Mon-Sat 8am-6pm PST", href: "tel:8888185001" },
-                { image: "/images/icon-email-logo.png", title: "aupworld@gmail.com", sub: "Response within 24 hours", href: "mailto:aupworld@gmail.com" },
+                { icon: Mail, title: "support@auapw.org", sub: "Response within 24 hours", href: "mailto:support@auapw.org" },
                 { icon: MapPin, title: "107 Myrtle Ave, Woodbine, NJ 08270", sub: "United States", href: "#" },
                 { icon: Clock, title: "Business Hours", sub: "Monday-Saturday 8:00am - 6:00pm PST", href: "#" },
-              ].map(({ icon: Icon, image, title, sub, href }) => (
+              ].map(({ icon: Icon, title, sub, href }) => (
                 <a key={title} href={href} className="glass-card rounded-sm p-5 flex items-start gap-4 hover:-translate-y-0.5 transition-all">
                   <div className="w-10 h-10 rounded-full bg-secondary/50 border border-border/40 flex items-center justify-center shrink-0">
-                    {image ? (
-                      <img src={image} alt="" className="w-6 h-6" />
-                    ) : Icon ? (
-                      <Icon className="w-4 h-4 text-primary" />
-                    ) : null}
+                    {Icon && <Icon className="w-4 h-4 text-primary" />}
                   </div>
                   <div>
                     <div className="text-sm font-bold text-foreground">{title}</div>
