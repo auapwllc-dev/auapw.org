@@ -4,7 +4,7 @@ import { useWishlistStore } from '@/lib/stores/wishlist-store'
 import { useCartStore } from '@/lib/stores/cart-store'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { Trash2, Heart } from 'lucide-react'
+import { Trash2, Heart, Search, ShoppingCart } from 'lucide-react'
 import Image from 'next/image'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
@@ -46,8 +46,12 @@ export default function WishlistPage() {
               <Heart className="w-16 h-16 mb-4 opacity-40" />
               <h2 className="text-2xl font-semibold mb-2">Your wishlist is empty</h2>
               <p className="text-foreground/60 mb-6">Start adding parts to your wishlist</p>
-              <Link href="/parts" className="w-44 inline-block hover:-translate-y-1 transition-transform duration-200">
-                <img src="/images/button-find-your-part.jpg" alt="Browse Parts" className="w-full h-auto drop-shadow-xl" />
+              <Link 
+                href="/parts" 
+                className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-b from-zinc-200 via-zinc-300 to-zinc-400 border-2 border-zinc-400 text-zinc-900 font-bold text-sm hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.4)]"
+              >
+                <Search className="w-4 h-4" />
+                Browse Parts
               </Link>
             </div>
           ) : (
@@ -82,7 +86,7 @@ export default function WishlistPage() {
                         className="text-foreground/60 hover:text-green-400 transition-colors p-2 hover:bg-white/10 rounded flex items-center justify-center w-10 h-10"
                         aria-label="Add to cart"
                       >
-                        <img src="/images/icon-add-to-cart.png" alt="Add to cart" className="w-5 h-5" />
+                        <ShoppingCart className="w-5 h-5" />
                       </button>
                     </div>
                   </div>
@@ -97,8 +101,12 @@ export default function WishlistPage() {
                 >
                   Clear Wishlist
                 </button>
-                <Link href="/parts" className="w-44 inline-block hover:-translate-y-1 transition-transform duration-200">
-                  <img src="/images/button-find-your-part.jpg" alt="Continue Shopping" className="w-full h-auto drop-shadow-xl" />
+                <Link 
+                  href="/parts" 
+                  className="flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-b from-zinc-200 via-zinc-300 to-zinc-400 border-2 border-zinc-400 text-zinc-900 font-bold text-sm hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.4)]"
+                >
+                  <Search className="w-4 h-4" />
+                  Continue Shopping
                 </Link>
               </div>
             </div>

@@ -227,8 +227,11 @@ export function SearchPageContent() {
               <a href="tel:8888185001" className="btn-led inline-flex items-center justify-center gap-2 px-5 py-3 text-[0.68rem] font-bold tracking-[0.18em] uppercase rounded-sm">
                 <Phone className="w-3.5 h-3.5" /> Call Us for Help
               </a>
-              <Link href="/quote" className="w-40 inline-block hover:-translate-y-1 transition-transform duration-200">
-                <img src="/images/buttons/get-quote-dark.png" alt="Get Quote" className="w-full h-auto drop-shadow-lg" />
+              <Link 
+                href="/quote" 
+                className="flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-900 border-2 border-zinc-500 text-zinc-100 font-bold text-xs uppercase tracking-wider hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_12px_rgba(0,0,0,0.5)]"
+              >
+                Get Quote
               </Link>
             </div>
           </div>
@@ -308,8 +311,11 @@ export function SearchPageContent() {
                 <a href="tel:8888185001" className="btn-led inline-flex items-center justify-center gap-2 px-5 py-3 text-[0.68rem] font-bold tracking-[0.18em] uppercase rounded-sm">
                   <Phone className="w-3.5 h-3.5" /> Call (888) 818-5001
                 </a>
-                <Link href="/quote" className="w-40 inline-block hover:-translate-y-1 transition-transform duration-200">
-                  <img src="/images/buttons/get-quote-dark.png" alt="Get Quote" className="w-full h-auto drop-shadow-lg" />
+                <Link 
+                  href="/quote" 
+                  className="flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-900 border-2 border-zinc-500 text-zinc-100 font-bold text-xs uppercase tracking-wider hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_12px_rgba(0,0,0,0.5)]"
+                >
+                  Get Quote
                 </Link>
               </div>
             </div>

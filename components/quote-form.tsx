@@ -105,7 +105,7 @@ export function QuoteForm({ defaultPart = "", compact = false }: QuoteFormProps)
               href={`mailto:${CONTACT_EMAIL}`}
               className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-border text-foreground font-bold text-sm rounded-lg bg-muted/30 hover:bg-muted/60 transition-all"
             >
-              <img src="/images/icon-email-logo.png" alt="Email" className="w-4 h-4" />
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
               {CONTACT_EMAIL}
             </a>
           </div>
@@ -246,9 +246,10 @@ export function QuoteForm({ defaultPart = "", compact = false }: QuoteFormProps)
           <div className="mt-auto pt-3 sm:pt-4">
             <button
               type="submit"
-              className="w-full relative overflow-hidden rounded-lg transition-all hover:shadow-lg hover:shadow-black/40 hover:-translate-y-1"
+              className="w-full flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-900 border-2 border-zinc-500 text-zinc-100 font-bold text-base hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_12px_rgba(0,0,0,0.5)]"
             >
-              <img src="/images/buttons/get-quote-dark.png" alt="Get A Quote" className="w-full h-auto block" />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              GET A QUOTE
             </button>
             <p className="text-[9px] sm:text-[10px] text-muted-foreground mt-2 sm:mt-3 leading-relaxed">
               Clicking the button will open your email client with your quote details pre-filled to send to {CONTACT_EMAIL}.

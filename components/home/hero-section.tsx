@@ -3,20 +3,13 @@ import { GearBackground } from "@/components/gear-background"
 import { BrandWordmark } from "@/components/brand-wordmark"
 import { BrandEmblem3D } from "@/components/brand-emblem-3d"
 import { Logo } from "@/components/logo"
-import Image from "next/image"
+import { MetallicButton, FindYourPartButton, GetQuoteButton, EmailUsButton, CallNowButton } from "@/components/ui/metallic-button"
 
 export function HeroSection() {
   return (
     <section className="relative pt-[58px] overflow-hidden ghost-scan-section" style={{ paddingTop: "45px" }}>
-      {/* Background — always matte black with engine image */}
+      {/* Background — always matte black */}
       <div className="absolute inset-0 bg-[#080808]">
-        <Image
-          src="/images/hero-engines.jpg"
-          alt=""
-          fill
-          className="object-cover opacity-35 scale-105"
-          priority
-        />
         <div className="absolute inset-0 bg-gradient-to-br from-[rgba(232,232,232,0.04)] via-transparent to-[rgba(10,12,20,0.5)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-[rgba(8,8,8,0.5)] via-[rgba(8,8,8,0.08)] to-[rgba(8,8,8,0.92)]" />
         <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] rounded-full opacity-[0.05]" style={{ background: "radial-gradient(circle, #e8e8e8 0%, transparent 70%)" }} />
@@ -164,9 +157,7 @@ export function HeroSection() {
                   <span className="text-2xl font-bold tracking-wide text-primary/40">01</span>
                   <span className="text-sm font-bold tracking-wide text-primary uppercase">Search Your Part</span>
                   <p className="text-sm font-bold tracking-wide text-foreground leading-relaxed">Enter your vehicle year, make, model, and the part you need to get matched results instantly.</p>
-                  <Link href="/parts" className="mt-auto w-full inline-block hover:-translate-y-1 transition-transform duration-200">
-                    <img src="/images/buttons/find-your-part.jpg" alt="Find Your Part" className="w-full h-auto drop-shadow-xl" />
-                  </Link>
+                  <FindYourPartButton className="mt-auto w-full" />
                 </div>
 
                 {/* Step 02 */}
@@ -174,19 +165,15 @@ export function HeroSection() {
                   <span className="text-2xl font-bold tracking-wide text-primary/40">02</span>
                   <span className="text-sm font-bold tracking-wide text-primary uppercase">Get a Free Quote</span>
                   <p className="text-sm font-bold tracking-wide text-foreground leading-relaxed">Receive a transparent, no-obligation quote from our verified network with clear pricing upfront.</p>
-                  <Link href="/quote" className="mt-auto w-full inline-block hover:-translate-y-1 transition-transform duration-200">
-                    <img src="/images/buttons/get-quote-dark.png" alt="Get Quote" className="w-full h-auto drop-shadow-xl" />
-                  </Link>
+                  <GetQuoteButton className="mt-auto w-full" />
                 </div>
 
                 {/* Step 03 */}
                 <div className="p-4 rounded-lg flex flex-col items-center gap-3" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.09)" }}>
                   <span className="text-2xl font-bold tracking-wide text-primary/40">03</span>
-                  <span className="text-sm font-bold tracking-wide text-primary uppercase">Confirm &amp; Order</span>
+                  <span className="text-sm font-bold tracking-wide text-primary uppercase">Confirm & Order</span>
                   <p className="text-sm font-bold tracking-wide text-foreground leading-relaxed">Review availability, warranty details, and shipping options, then confirm your order with ease.</p>
-                  <a href="tel:8888185001" className="mt-auto w-full inline-block hover:-translate-y-1 transition-transform duration-200">
-                    <img src="/images/button-call-now-silver.png" alt="Call Now" className="w-full h-auto drop-shadow-xl" />
-                  </a>
+                  <CallNowButton className="mt-auto w-full" />
                 </div>
 
                 {/* Step 04 */}
@@ -194,9 +181,7 @@ export function HeroSection() {
                   <span className="text-2xl font-bold tracking-wide text-primary/40">04</span>
                   <span className="text-sm font-bold tracking-wide text-primary uppercase">Fast Delivery</span>
                   <p className="text-sm font-bold tracking-wide text-foreground leading-relaxed">Your part ships same day when available, delivered directly to your door or local shop.</p>
-                  <a href="mailto:support@auapw.org" className="mt-auto w-full inline-block hover:-translate-y-1 transition-transform duration-200">
-                    <img src="/images/buttons/support-email-us.png" alt="Email Us support@auapw.org" className="w-full h-auto drop-shadow-xl" />
-                  </a>
+                  <EmailUsButton className="mt-auto w-full text-xs" />
                 </div>
 
               </div>
@@ -212,7 +197,7 @@ export function HeroSection() {
 
             {/* Used Engines / Used Transmissions / Book Appointment — 3-column */}
             <div className="w-full pt-6 border-t border-white/10">
-              <h2 className="text-primary font-bold tracking-wide text-center text-lg sm:text-xl mb-6 uppercase">Used Engines · Used Transmissions · Truck Parts</h2>
+              <h2 className="text-primary font-bold tracking-wide text-center text-lg sm:text-xl mb-6 uppercase">Used Engines - Used Transmissions - Truck Parts</h2>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
 
                 {/* Used Engines */}
@@ -224,13 +209,13 @@ export function HeroSection() {
                   <ul className="flex flex-col gap-1">
                     {["All major domestic and import makes", "Low-mileage verified units", "Compression and leak tested", "Matched by VIN or engine code", "Warranty included on all units"].map(item => (
                       <li key={item} className="text-sm font-bold tracking-wide text-foreground flex items-start gap-2">
-                        <span className="text-primary mt-0.5">›</span>{item}
+                        <span className="text-primary mt-0.5">-</span>{item}
                       </li>
                     ))}
                   </ul>
-                  <Link href="/used-engines" className="mt-auto inline-block hover:-translate-y-1 transition-transform duration-200">
-                    <img src="/images/button-engines-get-quote.png" alt="Used Engines - Get Quote" className="w-full h-auto drop-shadow-xl" />
-                  </Link>
+                  <MetallicButton href="/used-engines" variant="dark" size="md" className="mt-auto w-full">
+                    Used Engines - Get Quote
+                  </MetallicButton>
                 </div>
 
                 {/* Used Transmissions */}
@@ -240,15 +225,15 @@ export function HeroSection() {
                     We carry automatic and manual used transmissions for cars, trucks, and SUVs. Each unit is tested for proper shifting, gear engagement, and fluid integrity before it leaves the yard. Get a direct-fit replacement at a fraction of dealership or rebuild cost without sacrificing reliability or quality.
                   </p>
                   <ul className="flex flex-col gap-1">
-                    {["Automatic and manual available", "Shift and engagement tested", "All makes and models covered", "Direct OEM fitment", "30–180 day warranty included"].map(item => (
+                    {["Automatic and manual available", "Shift and engagement tested", "All makes and models covered", "Direct OEM fitment", "30-180 day warranty included"].map(item => (
                       <li key={item} className="text-sm font-bold tracking-wide text-foreground flex items-start gap-2">
-                        <span className="text-primary mt-0.5">›</span>{item}
+                        <span className="text-primary mt-0.5">-</span>{item}
                       </li>
                     ))}
                   </ul>
-                  <Link href="/used-transmissions" className="mt-auto inline-block hover:-translate-y-1 transition-transform duration-200">
-                    <img src="/images/button-transmissions-get-quote.png" alt="Used Transmissions - Get Quote" className="w-full h-auto drop-shadow-xl" />
-                  </Link>
+                  <MetallicButton href="/used-transmissions" variant="dark" size="md" className="mt-auto w-full">
+                    Used Transmissions - Get Quote
+                  </MetallicButton>
                 </div>
 
                 {/* Book Appointment / Contact */}
@@ -260,17 +245,13 @@ export function HeroSection() {
                   <ul className="flex flex-col gap-1">
                     {["Pick your preferred callback time", "Available any day of the week", "Speak to a real parts specialist", "Get a quote over the phone", "No obligation — completely free"].map(item => (
                       <li key={item} className="text-sm font-bold tracking-wide text-foreground flex items-start gap-2">
-                        <span className="text-primary mt-0.5">›</span>{item}
+                        <span className="text-primary mt-0.5">-</span>{item}
                       </li>
                     ))}
                   </ul>
                   <div className="flex flex-col gap-3 mt-auto">
-                    <Link href="/quote" className="inline-block hover:-translate-y-1 transition-transform duration-200 w-40">
-                      <img src="/images/button-get-quote-dark-email.png" alt="Get Quote" className="w-full h-auto drop-shadow-xl" />
-                    </Link>
-                    <a href="mailto:support@auapw.org" className="inline-block hover:-translate-y-1 transition-transform duration-200">
-                      <img src="/images/button-support-email-callback.png" alt="Email Us support@auapw.org" className="w-full h-auto drop-shadow-xl" />
-                    </a>
+                    <GetQuoteButton className="w-full" />
+                    <EmailUsButton className="w-full text-xs" />
                   </div>
                 </div>
 

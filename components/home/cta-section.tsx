@@ -20,11 +20,19 @@ export function CTASection() {
           Search our nationwide inventory network or speak directly with our team. Every request receives a response within 24 hours.
         </p>
         <div className="flex flex-wrap gap-4 justify-center items-center">
-          <Link href="/search" className="w-52 sm:w-64 inline-block hover:-translate-y-1 transition-transform duration-200">
-            <img src="/images/buttons/find-your-part.jpg" alt="Find Your Part" className="w-full h-auto drop-shadow-xl rounded-lg" />
+          <Link 
+            href="/search" 
+            className="flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-b from-zinc-200 via-zinc-300 to-zinc-400 border-2 border-zinc-400 text-zinc-900 font-bold text-base hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.4)]"
+          >
+            <Search className="w-5 h-5" />
+            Find Your Part
           </Link>
-          <Link href="/quote" className="w-44 sm:w-52 inline-block hover:-translate-y-1 transition-transform duration-200">
-            <img src="/images/buttons/get-quote-dark.png" alt="Get Quote" className="w-full h-auto drop-shadow-xl" />
+          <Link 
+            href="/quote" 
+            className="flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-900 border-2 border-zinc-500 text-zinc-100 font-bold text-base hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_12px_rgba(0,0,0,0.5)]"
+          >
+            <MessageSquare className="w-5 h-5" />
+            Get Quote
           </Link>
         </div>
       </div>

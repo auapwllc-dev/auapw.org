@@ -1,8 +1,7 @@
 "use client"
 
-import Image from "next/image"
 import { QuoteForm } from "@/components/quote-form"
-import { Truck, Shield, RotateCcw, Cog } from "lucide-react"
+import { Truck, Shield, RotateCcw, Cog, CircleDot } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { PHONE_DISPLAY } from "@/lib/data"
 
@@ -21,8 +20,13 @@ export function UsedTransmissionsContent() {
               Used Transmissions
             </h1>
 
-            <div className="relative aspect-[16/9] rounded-lg overflow-hidden mb-8">
-              <Image src="/images/used-transmissions.jpg" alt="Used transmissions for sale" fill className="object-cover" />
+            <div className="relative aspect-[16/5] rounded-lg overflow-hidden mb-8 bg-gradient-to-br from-zinc-800 via-zinc-900 to-black flex items-center justify-center border border-zinc-700">
+              <CircleDot className="w-32 h-32 text-zinc-600 opacity-50" strokeWidth={0.5} />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <span className="text-xs font-bold tracking-[0.2em] uppercase text-zinc-400">Quality Used Transmissions</span>
+                <h3 className="text-lg font-bold text-white">Automatic & Manual - All Makes & Models</h3>
+              </div>
             </div>
 
             <div className="text-muted-foreground text-[0.95rem] leading-[1.8] flex flex-col gap-4 mb-12">

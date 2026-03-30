@@ -58,11 +58,29 @@ export default function ContactPage() {
 
               <div className="glass-card rounded-sm p-6 mt-2 flex flex-col gap-4">
                 <div className="metal-line mb-2" />
-                <a href="mailto:support@auapw.org" className="inline-block hover:-translate-y-1 transition-transform duration-200">
-                  <img src="/images/buttons/support-email-us.png" alt="Email Us support@auapw.org" className="w-full h-auto drop-shadow-lg" />
+                <a 
+                  href="mailto:support@auapw.org" 
+                  className="flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-b from-zinc-200 via-zinc-300 to-zinc-400 border-2 border-zinc-400 text-zinc-900 font-bold text-sm hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.4)]"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  support@auapw.org | Email Us
                 </a>
-                <a href="https://maps.google.com/?q=107+Myrtle+Ave+Woodbine+NJ+08270" target="_blank" rel="noopener noreferrer" className="inline-block hover:-translate-y-1 transition-transform duration-200">
-                  <img src="/images/buttons/location-address.png" alt="Location: 107 Myrtle Ave, Woodbine, NJ 08270" className="w-full h-auto drop-shadow-lg" />
+                <a 
+                  href="https://maps.google.com/?q=107+Myrtle+Ave+Woodbine+NJ+08270" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-b from-zinc-200 via-zinc-300 to-zinc-400 border-2 border-zinc-400 text-zinc-900 font-bold text-sm hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.4)]"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span className="flex flex-col leading-tight">
+                    <span>Location</span>
+                    <span className="text-xs opacity-80">107 Myrtle Ave, Woodbine, NJ 08270</span>
+                  </span>
                 </a>
               </div>
             </div>

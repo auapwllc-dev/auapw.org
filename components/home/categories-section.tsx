@@ -1,9 +1,9 @@
 import Link from "next/link"
-import Image from "next/image"
 import { PART_CATEGORIES } from "@/lib/data"
-import { CircleDot, Link2, Zap, Snowflake, Activity, Square } from "lucide-react"
+import { CircleDot, Link2, Zap, Snowflake, Activity, Square, Settings } from "lucide-react"
 
 const CATEGORY_ICONS: Record<string, React.ElementType> = {
+  engines: Settings,
   transmissions: CircleDot,
   drivetrain: Link2,
   electrical: Zap,
@@ -36,11 +36,7 @@ export function CategoriesSection() {
                 href={`/parts/${cat.id}`}
                 className="group glass-card rounded-sm p-7 transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-[0_8px_40px_rgba(0,0,0,0.5)]"
               >
-                {cat.id === 'engines' ? (
-                  <div className="w-8 h-8 mb-4 object-cover">
-                    <img src="/images/icon-gear.png" alt={cat.label} className="w-full h-full" />
-                  </div>
-                ) : Icon ? (
+                {Icon ? (
                   <Icon className="w-7 h-7 text-muted-foreground mb-4 group-hover:text-primary transition-colors" />
                 ) : null}
                 <h3 className="text-[15px] font-bold tracking-wide text-foreground mb-2">{cat.label}</h3>
