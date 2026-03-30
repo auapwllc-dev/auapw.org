@@ -152,7 +152,7 @@ export function Navbar() {
                 href={item.href}
                 className="header-boss-nav-text group relative"
               >
-                <span className="header-boss-nav-label text-sm xl:text-base">{item.label}</span>
+                <span className="header-boss-nav-label text-sm lg:text-base xl:text-lg font-semibold">{item.label}</span>
                 <span className="header-boss-nav-glow" />
               </Link>
             ))}
@@ -160,12 +160,12 @@ export function Navbar() {
             {/* Parts Categories Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger className="header-boss-nav-text group relative flex items-center gap-1.5 outline-none">
-                <span className="header-boss-nav-label text-sm xl:text-base">Parts</span>
-                <ChevronDown className="w-3.5 h-3.5 xl:w-4 xl:h-4 opacity-50 transition-transform group-data-[state=open]:rotate-180" />
+                <span className="header-boss-nav-label text-sm lg:text-base xl:text-lg font-semibold">Parts</span>
+                <ChevronDown className="w-3.5 h-3.5 lg:w-4 lg:h-4 xl:w-5 xl:h-5 opacity-50 transition-transform group-data-[state=open]:rotate-180" />
                 <span className="header-boss-nav-glow" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="w-56 bg-card/95 backdrop-blur-xl border-border/50">
-                <DropdownMenuLabel className="text-xs font-bold tracking-widest uppercase text-muted-foreground">
+              <DropdownMenuContent align="center" className="w-64 bg-card/95 backdrop-blur-xl border-border/50">
+                <DropdownMenuLabel className="text-xs lg:text-sm font-bold tracking-widest uppercase text-muted-foreground">
                   Parts by Category
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -173,7 +173,7 @@ export function Navbar() {
                   <DropdownMenuItem key={cat.href} asChild>
                     <Link
                       href={cat.href}
-                      className="flex items-center gap-2 cursor-pointer text-sm"
+                      className="flex items-center gap-2 cursor-pointer text-sm lg:text-base py-2"
                     >
                       {cat.label}
                     </Link>
@@ -183,7 +183,7 @@ export function Navbar() {
                 <DropdownMenuItem asChild>
                   <Link
                     href="/parts"
-                    className="flex items-center gap-2 cursor-pointer text-sm font-semibold text-primary"
+                    className="flex items-center gap-2 cursor-pointer text-sm lg:text-base font-semibold text-primary py-2"
                   >
                     View All Parts
                   </Link>
@@ -194,13 +194,13 @@ export function Navbar() {
             {/* Review All Website Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger className="header-boss-nav-text group relative flex items-center gap-1.5 outline-none">
-                <Globe className="w-4 h-4 xl:w-5 xl:h-5 opacity-70" />
-                <span className="header-boss-nav-label text-sm xl:text-base">All Pages</span>
-                <ChevronDown className="w-3.5 h-3.5 xl:w-4 xl:h-4 opacity-50 transition-transform group-data-[state=open]:rotate-180" />
+                <Globe className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 opacity-70" />
+                <span className="header-boss-nav-label text-sm lg:text-base xl:text-lg font-semibold">All Pages</span>
+                <ChevronDown className="w-3.5 h-3.5 lg:w-4 lg:h-4 xl:w-5 xl:h-5 opacity-50 transition-transform group-data-[state=open]:rotate-180" />
                 <span className="header-boss-nav-glow" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="center" className="w-56 bg-card/95 backdrop-blur-xl border-border/50">
-                <DropdownMenuLabel className="text-xs font-bold tracking-widest uppercase text-muted-foreground">
+              <DropdownMenuContent align="center" className="w-64 bg-card/95 backdrop-blur-xl border-border/50">
+                <DropdownMenuLabel className="text-xs lg:text-sm font-bold tracking-widest uppercase text-muted-foreground">
                   Review All Website
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
@@ -208,7 +208,7 @@ export function Navbar() {
                   <DropdownMenuItem key={page.href} asChild>
                     <Link
                       href={page.href}
-                      className="flex items-center gap-2 cursor-pointer text-sm"
+                      className="flex items-center gap-2 cursor-pointer text-sm lg:text-base py-2"
                     >
                       {page.label}
                     </Link>
