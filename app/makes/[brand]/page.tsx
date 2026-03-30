@@ -56,12 +56,69 @@ function BrandHeroBanner({ brand, color }: { brand: string; color: string }) {
             </div>
           ))}
         </div>
-        <div className="flex flex-wrap justify-center gap-3">
-          <Link href={`/search?make=${encodeURIComponent(brand)}`} className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 font-bold rounded-lg hover:bg-white/90 transition-all shadow-lg">
-            <Search className="w-5 h-5" /> Search {brand} Parts
+        <div className="flex flex-wrap justify-center gap-4">
+          {/* Search Parts - Liquid Mercury Button */}
+          <Link 
+            href={`/search?make=${encodeURIComponent(brand)}`}
+            className="group relative overflow-hidden rounded-full transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+            style={{
+              background: "linear-gradient(180deg, #e4e4e7 0%, #a1a1aa 15%, #71717a 50%, #a1a1aa 85%, #d4d4d4 100%)",
+              padding: "3px",
+            }}
+          >
+            <div 
+              className="relative rounded-full px-7 py-3.5 flex items-center gap-2.5"
+              style={{
+                background: "linear-gradient(180deg, #3f3f46 0%, #27272a 30%, #18181b 70%, #09090b 100%)",
+                boxShadow: "inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.4)",
+              }}
+            >
+              {/* LED Corner Lights */}
+              <span className="absolute -top-1 -left-1 w-2 h-2 rounded-full bg-white/50 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all duration-300" />
+              <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-white/50 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all duration-300" />
+              <span className="absolute -bottom-1 -left-1 w-2 h-2 rounded-full bg-white/50 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all duration-300" />
+              <span className="absolute -bottom-1 -right-1 w-2 h-2 rounded-full bg-white/50 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all duration-300" />
+              
+              {/* Water shine sweep */}
+              <span className="absolute inset-0 rounded-full overflow-hidden">
+                <span className="absolute top-0 left-[-100%] w-[60%] h-full bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-[-20deg] group-hover:left-[150%] transition-all duration-700" />
+              </span>
+              
+              <Search className="w-5 h-5 text-white relative z-10" />
+              <span className="text-white font-bold text-sm tracking-wide relative z-10">Search {brand} Parts</span>
+            </div>
           </Link>
-          <a href={`tel:${PHONE_SALES.replace(/-/g, "")}`} className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-bold rounded-lg hover:bg-white/20 transition-all">
-            <Phone className="w-5 h-5" /> Call {PHONE_DISPLAY}
+
+          {/* Call Now - Liquid Mercury Button */}
+          <a 
+            href={`tel:${PHONE_SALES.replace(/-/g, "")}`}
+            className="group relative overflow-hidden rounded-full transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]"
+            style={{
+              background: "linear-gradient(180deg, #e4e4e7 0%, #a1a1aa 15%, #71717a 50%, #a1a1aa 85%, #d4d4d4 100%)",
+              padding: "3px",
+            }}
+          >
+            <div 
+              className="relative rounded-full px-7 py-3.5 flex items-center gap-2.5"
+              style={{
+                background: "linear-gradient(180deg, #3f3f46 0%, #27272a 30%, #18181b 70%, #09090b 100%)",
+                boxShadow: "inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.4)",
+              }}
+            >
+              {/* LED Corner Lights */}
+              <span className="absolute -top-1 -left-1 w-2 h-2 rounded-full bg-white/50 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all duration-300" />
+              <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-white/50 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all duration-300" />
+              <span className="absolute -bottom-1 -left-1 w-2 h-2 rounded-full bg-white/50 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all duration-300" />
+              <span className="absolute -bottom-1 -right-1 w-2 h-2 rounded-full bg-white/50 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all duration-300" />
+              
+              {/* Water shine sweep */}
+              <span className="absolute inset-0 rounded-full overflow-hidden">
+                <span className="absolute top-0 left-[-100%] w-[60%] h-full bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-[-20deg] group-hover:left-[150%] transition-all duration-700" />
+              </span>
+              
+              <Phone className="w-5 h-5 text-white relative z-10" />
+              <span className="text-white font-bold text-sm tracking-wide relative z-10">Call {PHONE_DISPLAY}</span>
+            </div>
           </a>
         </div>
       </div>
@@ -349,18 +406,115 @@ export default function BrandPage() {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* CTA Section with Liquid LED Buttons */}
         <section className="mx-auto max-w-7xl px-6 pb-16">
-          <div className="rounded-2xl p-8 md:p-12 text-center" style={{ background: `linear-gradient(135deg, ${color}dd, ${color}aa)` }}>
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Need a Specific {brand} Part?</h2>
-            <p className="text-white/80 mb-6 max-w-xl mx-auto">
-              Our team can source any {brand} part from our network of 2,000+ verified yards. Get a free quote today -- no obligation.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/quote" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 font-bold rounded-lg hover:bg-white/90 transition-all">Get Free Quote</Link>
-              <a href={`tel:${PHONE_SALES.replace(/-/g, "")}`} className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/30 text-white font-bold rounded-lg hover:bg-white/20 transition-all">
-                <Phone className="w-5 h-5" /> {PHONE_DISPLAY}
-              </a>
+          <div className="rounded-2xl p-8 md:p-12 text-center relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${color}dd, ${color}aa)` }}>
+            {/* Animated background glow */}
+            <div className="absolute inset-0 opacity-30">
+              <div className="absolute top-0 left-1/4 w-64 h-64 bg-white/20 rounded-full blur-3xl animate-pulse" />
+              <div className="absolute bottom-0 right-1/4 w-64 h-64 bg-white/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+            </div>
+            <div className="relative z-10">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Need a Specific {brand} Part?</h2>
+              <p className="text-white/80 mb-8 max-w-xl mx-auto">
+                Our team can source any {brand} part from our network of 2,000+ verified yards. Get a free quote today -- no obligation.
+              </p>
+              
+              {/* Liquid LED Metallic Buttons */}
+              <div className="flex flex-wrap justify-center gap-4">
+                {/* Get Free Quote - Liquid Mercury Button */}
+                <Link 
+                  href="/quote" 
+                  className="group relative overflow-hidden rounded-full transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+                  style={{
+                    background: "linear-gradient(180deg, #e4e4e7 0%, #a1a1aa 15%, #71717a 50%, #a1a1aa 85%, #d4d4d4 100%)",
+                    padding: "3px",
+                  }}
+                >
+                  <div 
+                    className="relative rounded-full px-8 py-4 flex items-center gap-3"
+                    style={{
+                      background: "linear-gradient(180deg, #3f3f46 0%, #27272a 30%, #18181b 70%, #09090b 100%)",
+                      boxShadow: "inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.4)",
+                    }}
+                  >
+                    {/* LED Corner Lights */}
+                    <span className="absolute -top-1 -left-1 w-2 h-2 rounded-full bg-white/60 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all" />
+                    <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-white/60 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all" />
+                    <span className="absolute -bottom-1 -left-1 w-2 h-2 rounded-full bg-white/60 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all" />
+                    <span className="absolute -bottom-1 -right-1 w-2 h-2 rounded-full bg-white/60 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all" />
+                    
+                    {/* Water shine sweep */}
+                    <span className="absolute inset-0 rounded-full overflow-hidden">
+                      <span className="absolute top-0 left-[-100%] w-[60%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] group-hover:left-[150%] transition-all duration-700" />
+                    </span>
+                    
+                    <svg className="w-5 h-5 text-white relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <span className="text-white font-bold text-sm tracking-wide relative z-10">Get Free Quote</span>
+                  </div>
+                </Link>
+
+                {/* Call Now - Liquid Mercury Button */}
+                <a 
+                  href={`tel:${PHONE_SALES.replace(/-/g, "")}`}
+                  className="group relative overflow-hidden rounded-full transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+                  style={{
+                    background: "linear-gradient(180deg, #e4e4e7 0%, #a1a1aa 15%, #71717a 50%, #a1a1aa 85%, #d4d4d4 100%)",
+                    padding: "3px",
+                  }}
+                >
+                  <div 
+                    className="relative rounded-full px-8 py-4 flex items-center gap-3"
+                    style={{
+                      background: "linear-gradient(180deg, #3f3f46 0%, #27272a 30%, #18181b 70%, #09090b 100%)",
+                      boxShadow: "inset 0 2px 4px rgba(255,255,255,0.1), inset 0 -2px 4px rgba(0,0,0,0.4)",
+                    }}
+                  >
+                    {/* LED Corner Lights */}
+                    <span className="absolute -top-1 -left-1 w-2 h-2 rounded-full bg-white/60 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all" />
+                    <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-white/60 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all" />
+                    <span className="absolute -bottom-1 -left-1 w-2 h-2 rounded-full bg-white/60 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all" />
+                    <span className="absolute -bottom-1 -right-1 w-2 h-2 rounded-full bg-white/60 group-hover:bg-white group-hover:shadow-[0_0_10px_4px_rgba(255,255,255,0.6)] transition-all" />
+                    
+                    {/* Water shine sweep */}
+                    <span className="absolute inset-0 rounded-full overflow-hidden">
+                      <span className="absolute top-0 left-[-100%] w-[60%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] group-hover:left-[150%] transition-all duration-700" />
+                    </span>
+                    
+                    <Phone className="w-5 h-5 text-white relative z-10" />
+                    <span className="text-white font-bold text-sm tracking-wide relative z-10">{PHONE_DISPLAY}</span>
+                  </div>
+                </a>
+              </div>
+
+              {/* Popular Parts Quick Access */}
+              <div className="mt-10 pt-8 border-t border-white/20">
+                <p className="text-white/60 text-sm mb-4">Popular {brand} Parts:</p>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {["Engine", "Transmission", "AC Compressor", "Radiator", "Alternator", "Starter Motor"].map((part) => (
+                    <Link
+                      key={part}
+                      href={`/search?make=${encodeURIComponent(brand)}&part=${encodeURIComponent(part)}`}
+                      className="group relative overflow-hidden rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                      style={{
+                        background: "linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%)",
+                        padding: "2px",
+                      }}
+                    >
+                      <span 
+                        className="relative block rounded-full px-4 py-2 text-xs font-semibold text-white"
+                        style={{
+                          background: "linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%)",
+                        }}
+                      >
+                        {part}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
