@@ -1463,7 +1463,7 @@ footer .wordmark-3d {
   -webkit-text-fill-color: unset;
 }
 
-/* ────────────────────────────────────────────────────
+/* ────────────────────────────────────���───────────────
    3D EXTRUSION EFFECTS — NAVBAR ELEMENTS
    ──────────────────────────────────────────────────── */
 
@@ -3357,7 +3357,7 @@ footer .wordmark-3d {
     0 8px 32px rgba(0,0,0,0.08);
 }
 
-/* ────────────────────────────────────────────────────
+/* ────────��───────────────────────────────────────────
    METAL BUTTONS — Brushed Steel Button Styling
    ──────────────────────────────────────────────────── */
 
@@ -3470,253 +3470,54 @@ footer .wordmark-3d {
 }
 
 /* ════════════════════════════════════════════════════════════
-   LIQUID LED BUTTON EFFECTS — Water/Mercury Flow + Corner Glow
-   Smooth animations on scroll, hover, and click
+   MATTE BUTTON STYLES — Clean, Industrial, No Shine
    ════════════════════════════════════════════════════════════ */
 
-/* Corner LED Glow Keyframes */
-@keyframes corner-led-pulse {
-  0%, 100% {
-    box-shadow: 
-      0 0 0 1px rgba(255,255,255,0.1),
-      inset 0 0 0 1px rgba(255,255,255,0.05),
-      /* Top-left corner */
-      -3px -3px 8px rgba(255,255,255,0.15),
-      /* Top-right corner */
-      3px -3px 8px rgba(255,255,255,0.15),
-      /* Bottom-left corner */
-      -3px 3px 8px rgba(255,255,255,0.15),
-      /* Bottom-right corner */
-      3px 3px 8px rgba(255,255,255,0.15);
-  }
-  50% {
-    box-shadow: 
-      0 0 0 1px rgba(255,255,255,0.25),
-      inset 0 0 0 1px rgba(255,255,255,0.1),
-      /* Top-left corner */
-      -6px -6px 20px rgba(255,255,255,0.4),
-      /* Top-right corner */
-      6px -6px 20px rgba(255,255,255,0.4),
-      /* Bottom-left corner */
-      -6px 6px 20px rgba(255,255,255,0.4),
-      /* Bottom-right corner */
-      6px 6px 20px rgba(255,255,255,0.4);
-  }
-}
-
-/* Liquid Flow Animation */
-@keyframes liquid-flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Water Ripple on Click */
-@keyframes water-ripple {
-  0% {
-    transform: scale(0);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(4);
-    opacity: 0;
-  }
-}
-
-/* LED Border Travel Animation */
-@keyframes led-border-travel {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
-}
-
-/* Scroll-triggered fade-in-up */
-@keyframes scroll-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ── LIQUID LED BUTTON ── */
-.liquid-led-btn {
+/* ── MATTE BUTTON ── */
+.liquid-led-btn,
+.matte-btn {
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  background: linear-gradient(135deg, 
-    rgba(30,32,40,0.95) 0%, 
-    rgba(40,42,52,0.9) 50%, 
-    rgba(30,32,40,0.95) 100%
-  );
-  background-size: 200% 200%;
-  animation: liquid-flow 4s ease infinite;
-  border: 1px solid transparent;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(180deg, #2a2d35 0%, #1a1d22 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.2s ease;
 }
 
-/* LED Corner Glow Effect */
-.liquid-led-btn::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 14px;
-  background: linear-gradient(90deg, 
-    transparent 0%,
-    rgba(255,255,255,0.3) 25%,
-    rgba(255,255,255,0.6) 50%,
-    rgba(255,255,255,0.3) 75%,
-    transparent 100%
-  );
-  background-size: 200% 100%;
-  animation: led-border-travel 3s linear infinite;
-  z-index: -1;
-  opacity: 0.5;
+.liquid-led-btn:hover,
+.matte-btn:hover {
+  background: linear-gradient(180deg, #32363f 0%, #22252d 100%);
+  border-color: rgba(255,255,255,0.12);
+  transform: translateY(-1px);
 }
 
-/* Water/Mercury inner shine */
-.liquid-led-btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255,255,255,0.08) 30%,
-    rgba(255,255,255,0.2) 50%,
-    rgba(255,255,255,0.08) 70%,
-    transparent 100%
-  );
-  transform: skewX(-20deg);
-  transition: left 0.6s ease;
-}
-
-.liquid-led-btn:hover::after {
-  left: 150%;
-}
-
-.liquid-led-btn:hover {
-  animation: corner-led-pulse 1.5s ease-in-out infinite;
-  transform: translateY(-2px);
-}
-
-/* Water Ripple Container */
-.liquid-led-btn .ripple {
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);
-  animation: water-ripple 0.8s ease-out forwards;
-  pointer-events: none;
-}
-
-/* ── CORNER GLOW TABS ── */
+/* ── CORNER TAB — Simple border highlight ── */
 .corner-glow-tab {
   position: relative;
-  overflow: visible;
   border-radius: 10px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
 }
 
-/* Four corner LED dots */
-.corner-glow-tab::before,
-.corner-glow-tab::after {
-  content: '';
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.6);
-  box-shadow: 0 0 8px 2px rgba(255,255,255,0.4);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.corner-glow-tab:hover {
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.03);
 }
 
-.corner-glow-tab::before {
-  top: -3px;
-  left: -3px;
-  box-shadow: 
-    0 0 8px 2px rgba(255,255,255,0.4),
-    calc(100% + 6px) 0 8px 2px rgba(255,255,255,0.4);
-}
-
-.corner-glow-tab::after {
-  bottom: -3px;
-  left: -3px;
-  box-shadow: 
-    0 0 8px 2px rgba(255,255,255,0.4),
-    calc(100% + 6px) 0 8px 2px rgba(255,255,255,0.4);
-}
-
-.corner-glow-tab:hover::before,
-.corner-glow-tab:hover::after {
-  opacity: 1;
-  animation: corner-led-pulse 1.5s ease-in-out infinite;
-}
-
-/* ── MERCURY LIQUID BUTTON ── */
+/* ── MATTE MERCURY BUTTON — No shine, solid industrial ── */
 .mercury-btn {
   position: relative;
   overflow: hidden;
   border-radius: 50px;
-  background: linear-gradient(180deg, 
-    #4a4f5a 0%, 
-    #2a2d35 50%, 
-    #1a1d22 100%
-  );
-  border: 2px solid transparent;
-  background-clip: padding-box;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Chrome/Mercury outer border */
-.mercury-btn::before {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 52px;
-  background: linear-gradient(180deg, 
-    #d4d4d4 0%, 
-    #a1a1aa 15%, 
-    #71717a 50%,
-    #a1a1aa 85%, 
-    #d4d4d4 100%
-  );
-  z-index: -1;
-  animation: liquid-flow 3s ease infinite;
-  background-size: 100% 200%;
-}
-
-/* Inner liquid mercury shine */
-.mercury-btn::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 50%;
-  background: linear-gradient(180deg,
-    rgba(255,255,255,0.15) 0%,
-    rgba(255,255,255,0.05) 50%,
-    transparent 100%
-  );
-  border-radius: 50px 50px 100px 100px;
-  pointer-events: none;
+  background: linear-gradient(180deg, #3a3f48 0%, #25282f 100%);
+  border: 2px solid #52525b;
+  transition: all 0.2s ease;
 }
 
 .mercury-btn:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 
-    0 10px 30px rgba(0,0,0,0.3),
-    0 0 20px rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #44495a 0%, #2d3038 100%);
+  border-color: #71717a;
 }
 
 /* ── SCROLL-TRIGGERED ANIMATIONS ── */
@@ -3731,128 +3532,49 @@ footer .wordmark-3d {
   transform: translateY(0);
 }
 
-/* ── INTERACTIVE BUTTON WITH LED CORNERS ── */
+/* ── SIMPLE MATTE BUTTON ── */
 .led-corner-btn {
   position: relative;
   border-radius: 12px;
-  overflow: visible;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Corner LED lights */
-.led-corner-btn .led-corner {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff 0%, rgba(255,255,255,0.6) 50%, transparent 100%);
-  opacity: 0.3;
-  transition: all 0.3s ease;
-  pointer-events: none;
+.led-corner-btn:hover {
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.03);
 }
 
-.led-corner-btn .led-corner.tl { top: -4px; left: -4px; }
-.led-corner-btn .led-corner.tr { top: -4px; right: -4px; }
-.led-corner-btn .led-corner.bl { bottom: -4px; left: -4px; }
-.led-corner-btn .led-corner.br { bottom: -4px; right: -4px; }
-
-.led-corner-btn:hover .led-corner {
-  opacity: 1;
-  box-shadow: 0 0 12px 4px rgba(255,255,255,0.6);
-  animation: corner-led-pulse 1s ease-in-out infinite;
-}
-
-/* ── WATER DROP BUTTON ── */
+/* ── MATTE SOLID BUTTON ── */
 .water-drop-btn {
   position: relative;
   overflow: hidden;
   border-radius: 20px;
-  background: linear-gradient(145deg, 
-    rgba(50,55,65,0.9) 0%,
-    rgba(35,38,48,0.95) 50%,
-    rgba(25,28,35,1) 100%
-  );
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 
-    inset 0 2px 4px rgba(255,255,255,0.05),
-    inset 0 -2px 4px rgba(0,0,0,0.3),
-    0 4px 12px rgba(0,0,0,0.3);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Water surface reflection */
-.water-drop-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 10%;
-  right: 10%;
-  height: 40%;
-  background: linear-gradient(180deg,
-    rgba(255,255,255,0.12) 0%,
-    rgba(255,255,255,0.04) 60%,
-    transparent 100%
-  );
-  border-radius: 0 0 50% 50%;
-  pointer-events: none;
-}
-
-/* Water depth shadow */
-.water-drop-btn::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 5%;
-  right: 5%;
-  height: 30%;
-  background: linear-gradient(0deg,
-    rgba(0,0,0,0.2) 0%,
-    transparent 100%
-  );
-  border-radius: 50% 50% 0 0;
-  pointer-events: none;
+  background: linear-gradient(180deg, #32363f 0%, #1f2228 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.2s ease;
 }
 
 .water-drop-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 
-    inset 0 2px 4px rgba(255,255,255,0.1),
-    inset 0 -2px 4px rgba(0,0,0,0.4),
-    0 8px 24px rgba(0,0,0,0.4),
-    0 0 30px rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #3a3f4a 0%, #25282f 100%);
+  border-color: rgba(255,255,255,0.12);
 }
 
 .water-drop-btn:active {
   transform: translateY(0);
-  box-shadow: 
-    inset 0 3px 8px rgba(0,0,0,0.4),
-    0 2px 6px rgba(0,0,0,0.3);
 }
 
-/* ── Apply to existing button classes ── */
+/* ── Matte button styles — no animations ── */
 .btn-led,
-.metal-btn,
-.embossed-col,
-button[type="submit"],
-.glass-card {
-  animation: scroll-reveal 0.6s ease forwards;
+.metal-btn {
+  transition: all 0.2s ease;
 }
 
 .btn-led:hover,
 .metal-btn:hover {
-  animation: corner-led-pulse 2s ease-in-out infinite;
-}
-
-/* Light mode adjustments */
-.light .liquid-led-btn::before {
-  background: linear-gradient(90deg, 
-    transparent 0%,
-    rgba(0,0,0,0.15) 25%,
-    rgba(0,0,0,0.3) 50%,
-    rgba(0,0,0,0.15) 75%,
-    transparent 100%
-  );
+  transform: translateY(-1px);
 }
 
 .light .corner-glow-tab::before,
