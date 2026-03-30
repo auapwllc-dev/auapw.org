@@ -6,6 +6,7 @@ import { CAR_MAKES, PART_CATEGORIES, PHONE_DISPLAY, PHONE_SALES, CONTACT_EMAIL, 
 import { Phone, Mail, MapPin, Clock, Shield, Truck, ExternalLink } from "lucide-react"
 import { BrandWordmark } from "@/components/brand-wordmark"
 import { Logo } from "@/components/logo"
+import { CallNowButton, EmailUsButton, LocationButton } from "@/components/ui/metallic-button"
 import { useState } from "react"
 
 function BrandLogo({ brand }: { brand: string }) {
@@ -175,25 +176,9 @@ export function Footer() {
 
               {/* Contact Buttons */}
               <div className="space-y-3">
-                <MetallicFooterButton
-                  href={`tel:${PHONE_SALES.replace(/-/g, "")}`}
-                  icon={Phone}
-                  title="Call Us Now"
-                  subtitle={PHONE_DISPLAY}
-                />
-                <MetallicFooterButton
-                  href="mailto:support@auapw.org"
-                  icon={Mail}
-                  title="Email Support"
-                  subtitle="support@auapw.org"
-                />
-                <MetallicFooterButton
-                  href="https://maps.google.com/?q=107+Myrtle+Ave+Woodbine+NJ+08270"
-                  icon={MapPin}
-                  title="Visit Us"
-                  subtitle="107 Myrtle Ave, Woodbine, NJ"
-                  external
-                />
+                <CallNowButton />
+                <EmailUsButton />
+                <LocationButton />
               </div>
             </div>
 
