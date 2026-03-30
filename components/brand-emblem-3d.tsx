@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 
 interface BrandEmblem3DProps {
   effect?: 'mercury' | 'diamond-led' | 'ghost-scan'
@@ -19,10 +20,10 @@ export function BrandEmblem3D({
     lg: 'w-64 h-64',
   }
 
-  const effectClasses = {
-    mercury: 'emblem-mercury-effect',
-    'diamond-led': 'emblem-diamond-led-effect',
-    'ghost-scan': 'emblem-ghost-scan-effect',
+  const imageSizes = {
+    sm: 100,
+    md: 160,
+    lg: 220,
   }
 
   return (
@@ -53,39 +54,58 @@ export function BrandEmblem3D({
         </svg>
       </div>
 
-      {/* 3D Emblem Container with Block Extrusion */}
+      {/* 3D Emblem Container */}
       <div 
-        className={`${sizeClasses[size]} relative flex items-center justify-center ${effectClasses[effect]} ${animated ? 'animate-emblem-pulse' : ''}`}
+        className={`${sizeClasses[size]} relative flex items-center justify-center ${animated ? 'animate-emblem-pulse' : ''}`}
         style={{
           perspective: '1000px',
           transformStyle: 'preserve-3d',
         }}
       >
-        {/* Heavy 3D Block Shadow Base Layer */}
-        
+        {/* Logo Image */}
+        <div className="relative z-10">
+          <Image
+            src="/logo.png"
+            alt="AUAPW - All Used Auto Parts World"
+            width={imageSizes[size]}
+            height={imageSizes[size]}
+            className="object-contain drop-shadow-2xl"
+            priority
+          />
+        </div>
 
-        {/* Primary Emblem Face with Foreground Effect */}
-        
+        {/* Glow Effect */}
+        <div 
+          className="absolute inset-0 rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(circle, rgba(232,232,232,0.15) 0%, transparent 60%)',
+            filter: 'blur(20px)',
+          }}
+        />
 
-        {/* Dynamic Effect Layer (Mercury/Diamond LED/Ghost Scan) */}
+        {/* Mercury Effect Overlay */}
         {effect === 'mercury' && (
           <div
-            className="absolute inset-0 rounded-full opacity-60"
+            className="absolute inset-0 rounded-full opacity-40 pointer-events-none"
             style={{
-              background: 'linear-gradient(90deg, #5a6778 0%, #8b96a8 25%, #ffffff 50%, #8b96a8 75%, #5a6778 100%)',
+              background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%)',
               backgroundSize: '200% auto',
-              backgroundClip: 'border-box',
               animation: animated ? 'mercury-flow 4s ease-in-out infinite' : 'none',
-              filter: 'blur(1px)',
               mixBlendMode: 'overlay',
             }}
           />
         )}
 
-        {effect === 'diamond-led' && null}
-
-        {/* Chromatic Fringe Accent */}
-        
+        {/* Diamond LED Effect */}
+        {effect === 'diamond-led' && (
+          <div
+            className="absolute inset-0 rounded-full opacity-20 pointer-events-none"
+            style={{
+              background: 'conic-gradient(from 0deg, transparent 0%, rgba(255,255,255,0.5) 10%, transparent 20%)',
+              animation: animated ? 'gear-rotate 8s linear infinite' : 'none',
+            }}
+          />
+        )}
       </div>
     </div>
   )

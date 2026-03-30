@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   title: 'AUAPW.ORG - Quality Used Auto Parts | Engines, Transmissions & More',
   description: 'AUAPW.ORG - Your trusted source for quality used auto parts. Shop engines, transmissions, body parts and more from 2,000+ verified salvage yards nationwide. Free shipping, 6-month warranty.',
   generator: 'v0.dev',
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
   alternates: {
     canonical: 'https://www.auapw.org',
   },
