@@ -65,15 +65,8 @@ export function QuoteForm({ defaultPart = "", compact = false }: QuoteFormProps)
       `?subject=${encodeURIComponent(subject)}` +
       `&body=${encodeURIComponent(body)}`
 
-    // Create and immediately click a real anchor tag — this is a synchronous
-    // user-gesture-triggered action so browsers allow mailto: without blocking
-    const link = document.createElement("a")
-    link.href = mailtoUrl
-    link.target = "_blank"
-    link.rel = "noopener noreferrer"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    // Use direct navigation - most reliable for mailto
+    window.location.href = mailtoUrl
 
     setSuccess(true)
   }

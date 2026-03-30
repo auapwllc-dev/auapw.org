@@ -63,14 +63,8 @@ export default function QuotePage() {
 
     const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 
-    // Create and click a link element - this is synchronous and won't be blocked
-    const link = document.createElement("a")
-    link.href = mailtoUrl
-    link.target = "_blank"
-    link.rel = "noopener noreferrer"
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+    // Use direct navigation - most reliable for mailto
+    window.location.href = mailtoUrl
 
     setSuccess(true)
   }
