@@ -63,7 +63,7 @@ export function Logo({
     <div className="relative">
       <div className={containerStyles} style={boxShadow ? { boxShadow } : undefined}>
         <Image
-          src="/logo.png"
+          src="/images/auapw-logo.jpeg"
           alt="AUAPW.ORG - Quality Used Auto Parts"
           width={width}
           height={height}
