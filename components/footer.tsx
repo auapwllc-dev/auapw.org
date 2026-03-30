@@ -169,7 +169,7 @@ export function Footer() {
               </div>
               
               {/* Contact Buttons - Equal Size */}
-              <div className="grid grid-cols-1 gap-2">
+              <div className="grid grid-cols-1 gap-3 mt-2">
                 <CallNowButton className="w-full" />
                 <EmailUsButton className="w-full" />
                 <LocationButton className="w-full" />
