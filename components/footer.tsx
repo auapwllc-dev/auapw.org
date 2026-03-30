@@ -157,19 +157,19 @@ export function Footer() {
         </div>
 
         {/* Main Grid */}
-        <div className="mx-auto max-w-7xl px-4 md:px-6 py-4 md:py-6 bg-zinc-950/30">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-3 md:py-4 bg-zinc-950/30">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 md:gap-4">
             
             {/* Brand & Contact Column */}
             <div className="lg:col-span-4">
               {/* Logo & Brand */}
-              <div className="flex items-center gap-2 mb-3">
+              <div className="flex items-center gap-2 mb-2">
                 <Logo size="sm" variant="ring" />
                 <BrandWordmark size="footer" />
               </div>
               
               {/* Contact Buttons - Equal Size */}
-              <div className="grid grid-cols-1 gap-2">
+              <div className="grid grid-cols-1 gap-1.5">
                 <CallNowButton className="w-full" />
                 <EmailUsButton className="w-full" />
                 <LocationButton className="w-full" />
@@ -178,10 +178,10 @@ export function Footer() {
 
             {/* Links Columns */}
             <div className="lg:col-span-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
                 
                 {/* Popular Parts */}
-                <div className="relative p-3 md:p-4 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
+                <div className="relative p-2 md:p-3 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
                   {/* Background Metallic Gear Image */}
                   <Image 
                     src="/images/footer/gear.png" 
@@ -190,14 +190,14 @@ export function Footer() {
                     height={120} 
                     className="absolute -right-6 -bottom-6 w-28 h-28 opacity-20"
                   />
-                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.25em] uppercase mb-3 pb-2 border-b border-zinc-600/30"
+                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-2 pb-1 border-b border-zinc-600/30"
                       style={{ 
                         color: '#ffffff',
                         textShadow: '0 0 1px rgba(255,255,255,0.8), 0 2px 4px rgba(0,0,0,1), 0 4px 8px rgba(0,0,0,0.8), 0 -1px 0 rgba(255,255,255,0.2)'
                       }}>
                     Popular Parts
                   </h3>
-                  <ul className="relative space-y-2">
+                  <ul className="relative space-y-1">
                     {popularParts.map((part) => (
                       <li key={part}>
                         <Link 
@@ -213,23 +213,23 @@ export function Footer() {
                 </div>
 
                 {/* Popular Makes */}
-                <div className="relative p-3 md:p-4 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
+                <div className="relative p-2 md:p-3 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
                   {/* Background Metallic Car Image */}
                   <Image 
                     src="/images/footer/car.png" 
                     alt="" 
-                    width={120} 
-                    height={80} 
-                    className="absolute -right-4 -bottom-2 w-28 h-auto opacity-25"
+                    width={100} 
+                    height={60} 
+                    className="absolute -right-4 -bottom-2 w-24 h-auto opacity-25"
                   />
-                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.25em] uppercase mb-3 pb-2 border-b border-zinc-600/30"
+                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-2 pb-1 border-b border-zinc-600/30"
                       style={{ 
                         color: '#ffffff',
                         textShadow: '0 0 1px rgba(255,255,255,0.8), 0 2px 4px rgba(0,0,0,1), 0 4px 8px rgba(0,0,0,0.8), 0 -1px 0 rgba(255,255,255,0.2)'
                       }}>
                     Popular Makes
                   </h3>
-                  <ul className="relative space-y-2">
+                  <ul className="relative space-y-1">
                     {popularMakes.map((make) => (
                       <li key={make}>
                         <Link 
@@ -245,23 +245,23 @@ export function Footer() {
                 </div>
 
                 {/* Quick Links */}
-                <div className="relative p-3 md:p-4 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
+                <div className="relative p-2 md:p-3 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
                   {/* Background Metallic SUV Image */}
                   <Image 
                     src="/images/footer/suv.png" 
                     alt="" 
-                    width={120} 
-                    height={80} 
-                    className="absolute -right-4 -bottom-2 w-28 h-auto opacity-25"
+                    width={100} 
+                    height={60} 
+                    className="absolute -right-4 -bottom-2 w-24 h-auto opacity-25"
                   />
-                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.25em] uppercase mb-3 pb-2 border-b border-zinc-600/30"
+                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-2 pb-1 border-b border-zinc-600/30"
                       style={{ 
                         color: '#ffffff',
                         textShadow: '0 0 1px rgba(255,255,255,0.8), 0 2px 4px rgba(0,0,0,1), 0 4px 8px rgba(0,0,0,0.8), 0 -1px 0 rgba(255,255,255,0.2)'
                       }}>
                     Quick Links
                   </h3>
-                  <ul className="relative space-y-2">
+                  <ul className="relative space-y-1">
                     {[
                       { label: "Used Engines", href: "/used-engines" },
                       { label: "Transmissions", href: "/used-transmissions" },
@@ -282,23 +282,23 @@ export function Footer() {
                 </div>
 
                 {/* Policies */}
-                <div className="relative p-3 md:p-4 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
+                <div className="relative p-2 md:p-3 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
                   {/* Background Metallic Shield Image */}
                   <Image 
                     src="/images/footer/shield.png" 
                     alt="" 
-                    width={100} 
-                    height={120} 
-                    className="absolute -right-4 -bottom-4 w-24 h-auto opacity-20"
+                    width={80} 
+                    height={100} 
+                    className="absolute -right-4 -bottom-4 w-20 h-auto opacity-20"
                   />
-                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.25em] uppercase mb-3 pb-2 border-b border-zinc-600/30"
+                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-2 pb-1 border-b border-zinc-600/30"
                       style={{ 
                         color: '#ffffff',
                         textShadow: '0 0 1px rgba(255,255,255,0.8), 0 2px 4px rgba(0,0,0,1), 0 4px 8px rgba(0,0,0,0.8), 0 -1px 0 rgba(255,255,255,0.2)'
                       }}>
                     Policies
                   </h3>
-                  <ul className="relative space-y-2">
+                  <ul className="relative space-y-1">
                     {[
                       { label: "Privacy Policy", href: "/privacy-policy" },
                       { label: "Terms", href: "/terms" },
