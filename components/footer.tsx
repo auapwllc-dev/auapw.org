@@ -89,38 +89,79 @@ export function Footer() {
               Premium quality used auto parts from 2,000+ verified yards nationwide. 30-180 day warranty on every part.
             </p>
             <div className="space-y-3 sm:space-y-4">
+              {/* Metallic Dark Button - Support Email */}
               <a 
                 href="mailto:support@auapw.org" 
-                className="flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-b from-zinc-200 via-zinc-300 to-zinc-400 border-2 border-zinc-400 text-zinc-900 font-bold text-sm hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.4)]"
+                className="group relative overflow-hidden rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg flex"
+                style={{
+                  background: "linear-gradient(180deg, #d4d4d4 0%, #a1a1aa 15%, #71717a 85%, #52525b 100%)",
+                  padding: "3px",
+                }}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                support@auapw.org | Email Us
+                <div 
+                  className="relative rounded-full px-4 py-3 flex items-center gap-2 w-full"
+                  style={{
+                    background: "linear-gradient(180deg, #3f3f46 0%, #27272a 30%, #18181b 70%, #0a0a0b 100%)",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.3)",
+                  }}
+                >
+                  <svg className="w-4 h-4 text-zinc-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span className="text-sm font-bold text-white">support@auapw.org | Email Us</span>
+                </div>
               </a>
+
+              {/* Metallic Dark Button - Info Email */}
               <a 
                 href="mailto:info@auapw.org" 
-                className="flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-b from-zinc-200 via-zinc-300 to-zinc-400 border-2 border-zinc-400 text-zinc-900 font-bold text-sm hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.4)]"
+                className="group relative overflow-hidden rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg flex"
+                style={{
+                  background: "linear-gradient(180deg, #d4d4d4 0%, #a1a1aa 15%, #71717a 85%, #52525b 100%)",
+                  padding: "3px",
+                }}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                info@auapw.org | Email Us
+                <div 
+                  className="relative rounded-full px-4 py-3 flex items-center gap-2 w-full"
+                  style={{
+                    background: "linear-gradient(180deg, #3f3f46 0%, #27272a 30%, #18181b 70%, #0a0a0b 100%)",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.3)",
+                  }}
+                >
+                  <svg className="w-4 h-4 text-zinc-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span className="text-sm font-bold text-white">info@auapw.org | Email Us</span>
+                </div>
               </a>
+
+              {/* Metallic Dark Button - Location */}
               <a 
                 href="https://maps.google.com/?q=107+Myrtle+Ave+Woodbine+NJ+08270" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-b from-zinc-200 via-zinc-300 to-zinc-400 border-2 border-zinc-400 text-zinc-900 font-bold text-sm hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_4px_12px_rgba(0,0,0,0.4)]"
+                className="group relative overflow-hidden rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg flex"
+                style={{
+                  background: "linear-gradient(180deg, #d4d4d4 0%, #a1a1aa 15%, #71717a 85%, #52525b 100%)",
+                  padding: "3px",
+                }}
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span className="flex flex-col leading-tight">
-                  <span>Location</span>
-                  <span className="text-xs opacity-80">107 Myrtle Ave, Woodbine, NJ 08270</span>
-                </span>
+                <div 
+                  className="relative rounded-full px-4 py-3 flex items-center gap-2 w-full"
+                  style={{
+                    background: "linear-gradient(180deg, #3f3f46 0%, #27272a 30%, #18181b 70%, #0a0a0b 100%)",
+                    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.3)",
+                  }}
+                >
+                  <svg className="w-4 h-4 text-zinc-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  <span className="flex flex-col leading-tight">
+                    <span className="text-sm font-bold text-white">Location</span>
+                    <span className="text-xs text-zinc-400">107 Myrtle Ave, Woodbine, NJ 08270</span>
+                  </span>
+                </div>
               </a>
             </div>
           </div>
