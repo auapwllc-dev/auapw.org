@@ -181,19 +181,19 @@ export function Footer() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                 
                 {/* Popular Parts */}
-                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/30 border border-zinc-600/20 overflow-hidden backdrop-blur-sm">
+                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/80 border border-zinc-700/40 overflow-hidden">
                   {/* Background Metallic Gear Image */}
                   <Image 
                     src="/images/footer/gear.png" 
                     alt="" 
                     width={120} 
                     height={120} 
-                    className="absolute -right-6 -bottom-6 w-28 h-28 opacity-[0.07]"
+                    className="absolute -right-6 -bottom-6 w-28 h-28 opacity-10"
                   />
-                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.25em] uppercase mb-3 pb-2 border-b border-zinc-600/30"
+                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-3 pb-2 border-b border-zinc-700/50"
                       style={{ 
-                        color: '#d4d4d8',
-                        textShadow: '0 -1px 0 rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.15), 0 2px 6px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5)'
+                        color: '#e4e4e7',
+                        textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1)'
                       }}>
                     Popular Parts
                   </h3>
@@ -202,8 +202,8 @@ export function Footer() {
                       <li key={part}>
                         <Link 
                           href={`/search?part=${encodeURIComponent(part)}`}
-                          className="text-xs md:text-sm font-extrabold text-zinc-200 hover:text-white transition-colors"
-                          style={{ textShadow: '0 -1px 0 rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1), 0 2px 4px rgba(0,0,0,0.8)' }}
+                          className="text-xs md:text-sm font-bold text-zinc-300 hover:text-white transition-colors"
+                          style={{ textShadow: '0 1px 2px rgba(0,0,0,0.6)' }}
                         >
                           {part}
                         </Link>
@@ -213,19 +213,19 @@ export function Footer() {
                 </div>
 
                 {/* Popular Makes */}
-                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/30 border border-zinc-600/20 overflow-hidden backdrop-blur-sm">
+                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/80 border border-zinc-700/40 overflow-hidden">
                   {/* Background Metallic Car Image */}
                   <Image 
                     src="/images/footer/car.png" 
                     alt="" 
                     width={120} 
                     height={80} 
-                    className="absolute -right-4 -bottom-2 w-28 h-auto opacity-[0.08]"
+                    className="absolute -right-4 -bottom-2 w-28 h-auto opacity-15"
                   />
-                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.25em] uppercase mb-3 pb-2 border-b border-zinc-600/30"
+                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-3 pb-2 border-b border-zinc-700/50"
                       style={{ 
-                        color: '#d4d4d8',
-                        textShadow: '0 -1px 0 rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.15), 0 2px 6px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5)'
+                        color: '#e4e4e7',
+                        textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1)'
                       }}>
                     Popular Makes
                   </h3>
@@ -234,8 +234,8 @@ export function Footer() {
                       <li key={make}>
                         <Link 
                           href={`/makes/${encodeURIComponent(make.toLowerCase().replace(/\s+/g, "-"))}`}
-                          className="text-xs md:text-sm font-extrabold text-zinc-200 hover:text-white transition-colors"
-                          style={{ textShadow: '0 -1px 0 rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1), 0 2px 4px rgba(0,0,0,0.8)' }}
+                          className="text-xs md:text-sm font-bold text-zinc-300 hover:text-white transition-colors"
+                          style={{ textShadow: '0 1px 2px rgba(0,0,0,0.6)' }}
                         >
                           {make}
                         </Link>
@@ -245,19 +245,19 @@ export function Footer() {
                 </div>
 
                 {/* Quick Links */}
-                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/30 border border-zinc-600/20 overflow-hidden backdrop-blur-sm">
+                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/80 border border-zinc-700/40 overflow-hidden">
                   {/* Background Metallic SUV Image */}
                   <Image 
                     src="/images/footer/suv.png" 
                     alt="" 
                     width={120} 
                     height={80} 
-                    className="absolute -right-4 -bottom-2 w-28 h-auto opacity-[0.08]"
+                    className="absolute -right-4 -bottom-2 w-28 h-auto opacity-15"
                   />
-                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.25em] uppercase mb-3 pb-2 border-b border-zinc-600/30"
+                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-3 pb-2 border-b border-zinc-700/50"
                       style={{ 
-                        color: '#d4d4d8',
-                        textShadow: '0 -1px 0 rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.15), 0 2px 6px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5)'
+                        color: '#e4e4e7',
+                        textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1)'
                       }}>
                     Quick Links
                   </h3>
@@ -272,8 +272,8 @@ export function Footer() {
                       { label: "About Us", href: "/about" },
                     ].map(({ label, href }) => (
                       <li key={label}>
-                        <Link href={href} className="text-xs md:text-sm font-extrabold text-zinc-200 hover:text-white transition-colors"
-                          style={{ textShadow: '0 -1px 0 rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1), 0 2px 4px rgba(0,0,0,0.8)' }}>
+                        <Link href={href} className="text-xs md:text-sm font-bold text-zinc-300 hover:text-white transition-colors"
+                          style={{ textShadow: '0 1px 2px rgba(0,0,0,0.6)' }}>
                           {label}
                         </Link>
                       </li>
@@ -282,19 +282,19 @@ export function Footer() {
                 </div>
 
                 {/* Policies */}
-                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/30 border border-zinc-600/20 overflow-hidden backdrop-blur-sm">
+                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/80 border border-zinc-700/40 overflow-hidden">
                   {/* Background Metallic Shield Image */}
                   <Image 
                     src="/images/footer/shield.png" 
                     alt="" 
                     width={100} 
                     height={120} 
-                    className="absolute -right-4 -bottom-4 w-24 h-auto opacity-[0.06]"
+                    className="absolute -right-4 -bottom-4 w-24 h-auto opacity-10"
                   />
-                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.25em] uppercase mb-3 pb-2 border-b border-zinc-600/30"
+                  <h3 className="relative text-[10px] md:text-xs font-black tracking-[0.2em] uppercase mb-3 pb-2 border-b border-zinc-700/50"
                       style={{ 
-                        color: '#d4d4d8',
-                        textShadow: '0 -1px 0 rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.15), 0 2px 6px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.5)'
+                        color: '#e4e4e7',
+                        textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1)'
                       }}>
                     Policies
                   </h3>
@@ -309,8 +309,8 @@ export function Footer() {
                       { label: "Contact", href: "/contact" },
                     ].map(({ label, href }) => (
                       <li key={label}>
-                        <Link href={href} className="text-xs md:text-sm font-extrabold text-zinc-200 hover:text-white transition-colors"
-                          style={{ textShadow: '0 -1px 0 rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1), 0 2px 4px rgba(0,0,0,0.8)' }}>
+                        <Link href={href} className="text-xs md:text-sm font-bold text-zinc-300 hover:text-white transition-colors"
+                          style={{ textShadow: '0 1px 2px rgba(0,0,0,0.6)' }}>
                           {label}
                         </Link>
                       </li>
@@ -323,19 +323,17 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-zinc-600/30 bg-zinc-900/40">
+        <div className="border-t border-zinc-700/50 bg-zinc-900/80">
           <div className="mx-auto max-w-7xl px-4 md:px-6 py-3 md:py-4">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-2 md:gap-3">
-              <p className="text-[10px] md:text-xs text-zinc-300 text-center sm:text-left font-extrabold" 
-                 style={{ textShadow: '0 -1px 0 rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1), 0 2px 4px rgba(0,0,0,0.8)' }}>
-                &copy; {new Date().getFullYear()} <span className="font-black text-white" style={{ textShadow: '0 -1px 0 rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.2), 0 2px 8px rgba(0,0,0,0.9), 0 0 30px rgba(255,255,255,0.1)' }}>AUAPW.ORG</span> — All Used Auto Parts World.
+              <p className="text-[10px] md:text-xs text-zinc-400 text-center sm:text-left font-bold" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.6)' }}>
+                &copy; {new Date().getFullYear()} <span className="font-black text-white">AUAPW.ORG</span> — All Used Auto Parts World.
               </p>
-              <div className="flex items-center gap-3 text-[10px] md:text-xs text-zinc-300 font-extrabold"
-                   style={{ textShadow: '0 -1px 0 rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.1), 0 2px 4px rgba(0,0,0,0.8)' }}>
+              <div className="flex items-center gap-3 text-[10px] md:text-xs text-zinc-500 font-bold">
                 <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
-                <span className="text-zinc-600">|</span>
+                <span className="text-zinc-700">|</span>
                 <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy</Link>
-                <span className="text-zinc-600">|</span>
+                <span className="text-zinc-700">|</span>
                 <Link href="/sitemap-page" className="hover:text-white transition-colors">Sitemap</Link>
               </div>
             </div>
