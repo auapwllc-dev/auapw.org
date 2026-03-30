@@ -44,10 +44,14 @@ export async function POST(request: Request) {
     // Log the submission 
     console.log("[Quote Submission]", lines.join("\n"))
 
+    // Build mailto URL for client-side email opening
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`
+
     return NextResponse.json({
       success: true,
       message: "Your quote request has been received. We will contact you within 24 hours.",
       email: CONTACT_EMAIL,
+      mailtoUrl,
     })
   } catch {
     return NextResponse.json(

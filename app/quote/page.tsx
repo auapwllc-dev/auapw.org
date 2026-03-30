@@ -4,7 +4,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { BrandLogosSection } from "@/components/brand-logos"
 
-import { Zap, Shield, Truck, Phone, DollarSign, Mail, CheckCircle2, Loader2, AlertCircle } from "lucide-react"
+import { Zap, Shield, Truck, Phone, DollarSign, Mail, CheckCircle2, AlertCircle } from "lucide-react"
 import { CAR_MAKES, CAR_MODELS, PART_CATEGORIES, YEARS, US_STATES, PHONE_DISPLAY, PHONE_SALES } from "@/lib/data"
 import { getPartOptions } from "@/lib/parts-content"
 import { useState } from "react"
@@ -23,7 +23,6 @@ export default function QuotePage() {
   const [state, setState] = useState("")
   const [zip, setZip] = useState("")
   const [message, setMessage] = useState("")
-  const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -31,7 +30,7 @@ export default function QuotePage() {
   const partOptions = part ? getPartOptions(part) : []
   const selectClass = "w-full text-sm px-3 py-2.5 bg-[rgba(13,15,22,0.75)] border border-border/50 rounded-lg text-foreground appearance-none focus:border-primary/55 focus:ring-1 focus:ring-primary/20 outline-none transition-all"
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
 
@@ -39,26 +38,41 @@ export default function QuotePage() {
     if (!name.trim()) { setError("Please enter your name."); return }
     if (!phone.trim()) { setError("Please enter your phone number."); return }
 
-    setLoading(true)
-    try {
-      const res = await fetch("/api/quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ part, make, model, year, option, name, phone, email, state, zip, message }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || "Submission failed")
-      
-      // Open customer's email client to send email to aupworld@gmail.com
-      if (data.mailtoUrl) {
-        window.location.href = data.mailtoUrl
-      }
-      setSuccess(true)
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please call us directly.")
-    } finally {
-      setLoading(false)
-    }
+    // Build mailto URL directly in the browser to avoid popup blocking
+    const subject = `Quote Request: ${year || ""} ${make} ${model || ""} - ${part || "Auto Part"}`.trim()
+    const body = [
+      `New Quote Request from AUAPW Website`,
+      ``,
+      `--- Vehicle Details ---`,
+      `Part: ${part || "Not specified"}`,
+      `Make: ${make}`,
+      `Model: ${model || "Not specified"}`,
+      `Year: ${year || "Not specified"}`,
+      `Option: ${option || "Not specified"}`,
+      ``,
+      `--- Customer Details ---`,
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `Email: ${email || "Not provided"}`,
+      `State: ${state || "Not provided"}`,
+      `ZIP: ${zip || "Not provided"}`,
+      ``,
+      `--- Message ---`,
+      message || "(no message)",
+    ].join("\n")
+
+    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+
+    // Create and click a link element - this is synchronous and won't be blocked
+    const link = document.createElement("a")
+    link.href = mailtoUrl
+    link.target = "_blank"
+    link.rel = "noopener noreferrer"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+
+    setSuccess(true)
   }
 
   return (
@@ -230,9 +244,9 @@ export default function QuotePage() {
                       <textarea rows={3} placeholder="Any extra details that help us find the right part faster..." className={`${selectClass} resize-none`} value={message} onChange={e => setMessage(e.target.value)} />
                     </div>
 
-                    <button type="submit" disabled={loading} className="btn-led w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-[0.75rem] font-bold tracking-[0.18em] uppercase rounded-lg transition-all disabled:opacity-50 shadow-lg hover:shadow-xl hover:shadow-primary/20 mt-8">
-                      {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Mail className="w-4 h-4" />}
-                      {loading ? "Preparing..." : "Get A Quote"}
+                    <button type="submit" className="btn-led w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-[0.75rem] font-bold tracking-[0.18em] uppercase rounded-lg transition-all shadow-lg hover:shadow-xl hover:shadow-primary/20 mt-8">
+                      <Mail className="w-4 h-4" />
+                      Get A Quote
                     </button>
                     <p className="text-[11px] text-muted-foreground text-center">
                       Clicking &quot;Get A Quote&quot; will open your email client to send the request to {CONTACT_EMAIL}. No spam, no obligation.
