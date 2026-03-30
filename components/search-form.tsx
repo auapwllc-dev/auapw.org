@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { CAR_MAKES, CAR_MODELS, PART_CATEGORIES, YEARS, US_STATES } from "@/lib/data"
+import { CAR_MAKES, CAR_MODELS, PART_CATEGORIES, YEARS, US_STATES, PHONE_SALES } from "@/lib/data"
 import { Search, Phone, MessageSquare, AlertCircle } from "lucide-react"
+import Link from "next/link"
 
 interface SearchFormProps {
   compact?: boolean
@@ -242,7 +243,8 @@ export function SearchForm({ compact = false }: SearchFormProps) {
             </div>
           )}
 
-          <div className="flex gap-3 items-stretch flex-wrap">
+          <div className="flex gap-3 items-center flex-wrap">
+            {/* Search Button */}
             <button
               type="submit"
               className="btn-led flex-1 min-w-[180px] inline-flex items-center justify-center gap-2.5 text-[0.75rem] font-bold tracking-[0.18em] uppercase px-6 py-4 rounded-lg transition-all shadow-lg hover:shadow-xl"
@@ -251,22 +253,58 @@ export function SearchForm({ compact = false }: SearchFormProps) {
               <Search className="w-4 h-4" aria-hidden="true" />
               Search Available Parts
             </button>
+
+            {/* Metallic Call & Order Button */}
             <a
-              href="tel:8888185001"
+              href={`tel:${PHONE_SALES.replace(/-/g, "")}`}
               aria-label="Call us to order by phone"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 text-[0.7rem] font-bold tracking-[0.18em] uppercase border border-border/60 text-muted-foreground rounded-lg hover:border-foreground/50 hover:text-foreground transition-all"
+              className="group relative overflow-hidden rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+              style={{
+                background: "linear-gradient(180deg, #d4d4d4 0%, #a1a1aa 15%, #71717a 85%, #52525b 100%)",
+                padding: "3px",
+              }}
             >
-              <Phone className="w-3.5 h-3.5" aria-hidden="true" />
-              Call
+              <div 
+                className="relative rounded-full px-5 py-3 flex items-center gap-2"
+                style={{
+                  background: "linear-gradient(180deg, #3f3f46 0%, #27272a 30%, #18181b 70%, #0a0a0b 100%)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.3)",
+                }}
+              >
+                <Phone className="w-4 h-4 text-zinc-300" />
+                <div className="flex flex-col leading-tight">
+                  <span className="text-[11px] font-bold text-white tracking-wide">Call & Order</span>
+                  <span className="text-[9px] text-zinc-400">(888) 818-5001</span>
+                </div>
+              </div>
             </a>
-            <a
+
+            {/* Metallic Free Quote Button */}
+            <Link
               href="/quote"
               aria-label="Request a free quote"
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 text-[0.7rem] font-bold tracking-[0.18em] uppercase border border-border/60 text-muted-foreground rounded-lg hover:border-foreground/50 hover:text-foreground transition-all"
+              className="group relative overflow-hidden rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+              style={{
+                background: "linear-gradient(180deg, #d4d4d4 0%, #a1a1aa 15%, #71717a 85%, #52525b 100%)",
+                padding: "3px",
+              }}
             >
-              <MessageSquare className="w-3.5 h-3.5" aria-hidden="true" />
-              Quote
-            </a>
+              <div 
+                className="relative rounded-full px-5 py-3 flex items-center gap-2"
+                style={{
+                  background: "linear-gradient(180deg, #3f3f46 0%, #27272a 30%, #18181b 70%, #0a0a0b 100%)",
+                  boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.3)",
+                }}
+              >
+                <svg className="w-4 h-4 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <div className="flex flex-col leading-tight">
+                  <span className="text-[11px] font-bold text-white tracking-wide">Free Quote</span>
+                  <span className="text-[9px] text-zinc-400">Get Instant Price</span>
+                </div>
+              </div>
+            </Link>
           </div>
         </form>
       </div>
