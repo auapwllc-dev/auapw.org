@@ -65,7 +65,7 @@ export function BrandEmblem3D({
         {/* Logo Image */}
         <div className="relative z-10">
           <Image
-            src="/logo.png"
+            src="/images/auapw-logo.jpeg"
             alt="AUAPW - All Used Auto Parts World"
             width={imageSizes[size]}
             height={imageSizes[size]}
