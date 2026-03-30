@@ -4,7 +4,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { BrandLogosSection } from "@/components/brand-logos"
 
-import { Zap, Shield, Truck, Phone, DollarSign, Mail, CheckCircle2, AlertCircle } from "lucide-react"
+import { Zap, Shield, Truck, Phone, DollarSign, Mail, CheckCircle2, AlertCircle, Loader2, Copy, Check } from "lucide-react"
 import { CAR_MAKES, CAR_MODELS, PART_CATEGORIES, YEARS, US_STATES, PHONE_DISPLAY, PHONE_SALES } from "@/lib/data"
 import { getPartOptions } from "@/lib/parts-content"
 import { useState } from "react"
@@ -25,12 +25,14 @@ export default function QuotePage() {
   const [message, setMessage] = useState("")
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   const models = make ? CAR_MODELS[make] || [] : []
   const partOptions = part ? getPartOptions(part) : []
   const selectClass = "w-full text-sm px-3 py-2.5 bg-[rgba(13,15,22,0.75)] border border-border/50 rounded-lg text-foreground appearance-none focus:border-primary/55 focus:ring-1 focus:ring-primary/20 outline-none transition-all"
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
 
@@ -38,35 +40,33 @@ export default function QuotePage() {
     if (!name.trim()) { setError("Please enter your name."); return }
     if (!phone.trim()) { setError("Please enter your phone number."); return }
 
-    // Build mailto URL directly in the browser to avoid popup blocking
-    const subject = `Quote Request: ${year || ""} ${make} ${model || ""} - ${part || "Auto Part"}`.trim()
-    const body = [
-      `New Quote Request from AUAPW Website`,
-      ``,
-      `--- Vehicle Details ---`,
-      `Part: ${part || "Not specified"}`,
-      `Make: ${make}`,
-      `Model: ${model || "Not specified"}`,
-      `Year: ${year || "Not specified"}`,
-      `Option: ${option || "Not specified"}`,
-      ``,
-      `--- Customer Details ---`,
-      `Name: ${name}`,
-      `Phone: ${phone}`,
-      `Email: ${email || "Not provided"}`,
-      `State: ${state || "Not provided"}`,
-      `ZIP: ${zip || "Not provided"}`,
-      ``,
-      `--- Message ---`,
-      message || "(no message)",
-    ].join("\n")
+    setLoading(true)
 
-    const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ part, make, model, year, option, name, phone, email, state, zip, message }),
+      })
+      
+      const data = await res.json()
+      
+      if (!res.ok) {
+        throw new Error(data.error || "Submission failed")
+      }
+      
+      setSuccess(true)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please call us directly.")
+    } finally {
+      setLoading(false)
+    }
+  }
 
-    // Use direct navigation - most reliable for mailto
-    window.location.href = mailtoUrl
-
-    setSuccess(true)
+  function copyEmail() {
+    navigator.clipboard.writeText(CONTACT_EMAIL)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   return (
@@ -83,7 +83,7 @@ export default function QuotePage() {
             </div>
             <h1 className="font-serif text-[clamp(1.75rem,4vw,3.5rem)] font-bold text-foreground">Request a Free Quote</h1>
             <p className="mt-3 text-sm text-muted-foreground max-w-[520px]">
-              Fill out the form and our team will find the best available parts from our 2,000+ yard network. Your email client will open to send the request directly to our team.
+              Fill out the form and our team will find the best available parts from our 2,000+ yard network. We&apos;ll contact you within 24 hours.
             </p>
           </div>
         </div>
@@ -122,24 +122,39 @@ export default function QuotePage() {
             {/* Form - shown first on mobile */}
             <div className="lg:col-span-2 order-1 lg:order-2">
               {success ? (
-                <div className="glass-card rounded-sm p-8 text-center">
+                <div className="glass-card rounded-lg p-8 text-center border border-green-500/20 bg-green-500/5">
                   <CheckCircle2 className="w-16 h-16 text-green-400 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-foreground mb-3">Quote Request Prepared!</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-2">
-                    Your email client should open with the quote details pre-filled. Please click &quot;Send&quot; in your email client to submit.
-                  </p>
+                  <h3 className="text-2xl font-bold text-foreground mb-3">Quote Request Submitted!</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                    If the email didn&apos;t open, you can send your request directly to{" "}
-                    <a href={`mailto:${CONTACT_EMAIL}`} className="text-primary font-bold hover:underline">{CONTACT_EMAIL}</a>
+                    Thank you, <span className="font-semibold text-foreground">{name}</span>! Your quote request has been received. Our team will contact you at <span className="font-semibold text-foreground">{phone}</span> within 24 hours with the best available options.
                   </p>
+                  
+                  <div className="bg-card/50 border border-border/30 rounded-lg p-6 mb-6">
+                    <h4 className="text-sm font-bold text-foreground mb-4">Your Request Summary</h4>
+                    <div className="grid grid-cols-2 gap-3 text-left text-sm">
+                      <div><span className="text-muted-foreground">Part:</span> <span className="font-medium text-foreground">{part || "Not specified"}</span></div>
+                      <div><span className="text-muted-foreground">Make:</span> <span className="font-medium text-foreground">{make}</span></div>
+                      <div><span className="text-muted-foreground">Model:</span> <span className="font-medium text-foreground">{model || "Not specified"}</span></div>
+                      <div><span className="text-muted-foreground">Year:</span> <span className="font-medium text-foreground">{year || "Not specified"}</span></div>
+                    </div>
+                  </div>
+
+                  <p className="text-muted-foreground text-xs mb-4">
+                    Need immediate assistance? Call us at{" "}
+                    <a href={`tel:${PHONE_SALES.replace(/-/g, "")}`} className="text-primary font-bold hover:underline">{PHONE_DISPLAY}</a>
+                  </p>
+
                   <div className="flex flex-wrap gap-3 justify-center">
                     <a 
-                      href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(`Quote Request: ${year} ${make} ${model} - ${part}`)}&body=${encodeURIComponent(`Hi, I would like a quote for:\n\nPart: ${part}\nMake: ${make}\nModel: ${model}\nYear: ${year}\nOption: ${option}\n\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\n\n${message}`)}`}
-                      className="btn-led inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.72rem] font-bold tracking-[0.18em] uppercase rounded-sm"
+                      href={`tel:${PHONE_SALES.replace(/-/g, "")}`}
+                      className="btn-led inline-flex items-center justify-center gap-2 px-6 py-3 text-[0.72rem] font-bold tracking-[0.18em] uppercase rounded-lg"
                     >
-                      <Mail className="w-4 h-4" /> Open Email Again
+                      <Phone className="w-4 h-4" /> Call Now
                     </a>
-                    <button onClick={() => { setSuccess(false); setMake(""); setModel(""); setPart(""); }} className="px-6 py-3 text-sm text-muted-foreground border border-border/50 rounded-sm hover:text-foreground hover:border-foreground/50 transition-all">
+                    <button 
+                      onClick={() => { setSuccess(false); setMake(""); setModel(""); setPart(""); setName(""); setPhone(""); setEmail(""); setMessage(""); }} 
+                      className="px-6 py-3 text-sm text-muted-foreground border border-border/50 rounded-lg hover:text-foreground hover:border-foreground/50 transition-all"
+                    >
                       Submit Another Request
                     </button>
                   </div>
@@ -238,17 +253,50 @@ export default function QuotePage() {
                       <textarea rows={3} placeholder="Any extra details that help us find the right part faster..." className={`${selectClass} resize-none`} value={message} onChange={e => setMessage(e.target.value)} />
                     </div>
 
-                    <button type="submit" className="btn-led w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-[0.75rem] font-bold tracking-[0.18em] uppercase rounded-lg transition-all shadow-lg hover:shadow-xl hover:shadow-primary/20 mt-8">
-                      <Mail className="w-4 h-4" />
-                      Get A Quote
+                    <button 
+                      type="submit" 
+                      disabled={loading}
+                      className="btn-led w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-[0.75rem] font-bold tracking-[0.18em] uppercase rounded-lg transition-all shadow-lg hover:shadow-xl hover:shadow-primary/20 mt-8 disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      {loading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="w-4 h-4" />
+                          Get A Quote
+                        </>
+                      )}
                     </button>
                     <p className="text-[11px] text-muted-foreground text-center">
-                      Clicking &quot;Get A Quote&quot; will open your email client to send the request to {CONTACT_EMAIL}. No spam, no obligation.
+                      No spam, no obligation. We&apos;ll contact you within 24 hours.
                     </p>
                     <p className="text-[10px] text-muted-foreground text-center leading-relaxed">
                       By Submitting, you authorize AUAPW.ORG to text and call the number you provided with offers &amp; other information, possibly using automated means. Messages/Data rates apply. Consent is not a condition of purchase.
                     </p>
                   </form>
+
+                  {/* Fallback contact info */}
+                  <div className="mt-8 pt-6 border-t border-border/30">
+                    <p className="text-xs text-muted-foreground text-center mb-3">Or contact us directly:</p>
+                    <div className="flex flex-wrap gap-3 justify-center">
+                      <a 
+                        href={`tel:${PHONE_SALES.replace(/-/g, "")}`}
+                        className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-foreground border border-border/50 rounded-lg hover:border-primary/50 hover:text-primary transition-all"
+                      >
+                        <Phone className="w-3.5 h-3.5" /> {PHONE_DISPLAY}
+                      </a>
+                      <button 
+                        onClick={copyEmail}
+                        className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-foreground border border-border/50 rounded-lg hover:border-primary/50 hover:text-primary transition-all"
+                      >
+                        {copied ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5" />}
+                        {copied ? "Copied!" : CONTACT_EMAIL}
+                      </button>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

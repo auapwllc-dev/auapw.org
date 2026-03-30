@@ -2,10 +2,11 @@
 
 import { useState } from "react"
 import { CAR_MAKES, CAR_MODELS, YEARS } from "@/lib/data"
-import { Phone, AlertCircle, CheckCircle2 } from "lucide-react"
+import { Phone, AlertCircle, CheckCircle2, Loader2, Copy, Check } from "lucide-react"
 
 const CONTACT_EMAIL = "aupworld@gmail.com"
 const PHONE_DISPLAY = "(888) 818-5001"
+const PHONE_SALES = "888-818-5001"
 
 interface QuoteFormProps {
   defaultPart?: "Engine" | "Transmission" | ""
@@ -25,10 +26,12 @@ export function QuoteForm({ defaultPart = "", compact = false }: QuoteFormProps)
   const [message, setMessage] = useState("")
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   const models = make ? CAR_MODELS[make] || [] : []
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
 
@@ -36,39 +39,33 @@ export function QuoteForm({ defaultPart = "", compact = false }: QuoteFormProps)
     if (!name.trim()) { setError("Please enter your name."); return }
     if (!phone.trim()) { setError("Please enter your phone number."); return }
 
-    // Build mailto URL synchronously — must happen inside the user gesture
-    // so the browser does NOT block it
-    const subject = `Quote Request: ${year || ""} ${make} ${model || ""} - ${part || "Auto Part"}`.trim()
+    setLoading(true)
 
-    const body = [
-      `New Quote Request from All Auto Part Store`,
-      ``,
-      `--- Vehicle Details ---`,
-      `Part: ${part || "Not specified"}`,
-      `Make: ${make}`,
-      `Model: ${model || "Not specified"}`,
-      `Year: ${year || "Not specified"}`,
-      `Option: ${option || "Not specified"}`,
-      ``,
-      `--- Customer Details ---`,
-      `Name: ${name}`,
-      `Phone: ${phone}`,
-      `Email: ${email || "Not provided"}`,
-      `ZIP: ${zip || "Not provided"}`,
-      ``,
-      `--- Message ---`,
-      message || "(no additional details)",
-    ].join("\n")
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ part, make, model, year, option, name, phone, email, state: "", zip, message }),
+      })
+      
+      const data = await res.json()
+      
+      if (!res.ok) {
+        throw new Error(data.error || "Submission failed")
+      }
+      
+      setSuccess(true)
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please call us directly.")
+    } finally {
+      setLoading(false)
+    }
+  }
 
-    const mailtoUrl =
-      `mailto:${CONTACT_EMAIL}` +
-      `?subject=${encodeURIComponent(subject)}` +
-      `&body=${encodeURIComponent(body)}`
-
-    // Use direct navigation - most reliable for mailto
-    window.location.href = mailtoUrl
-
-    setSuccess(true)
+  function copyEmail() {
+    navigator.clipboard.writeText(CONTACT_EMAIL)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   const fieldClass =
@@ -76,43 +73,50 @@ export function QuoteForm({ defaultPart = "", compact = false }: QuoteFormProps)
 
   if (success) {
     return (
-      <div className="glass-card rounded-lg p-8 text-center">
+      <div className="glass-card rounded-lg p-8 text-center border border-green-500/20 bg-green-500/5">
         <CheckCircle2 className="w-14 h-14 text-green-400 mx-auto mb-5" />
-        <h3 className="text-2xl font-bold text-foreground mb-3">Email Client Opened!</h3>
-        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-          Your email client should now be open with all quote details pre-filled. Just hit <strong>Send</strong> to submit your request to {CONTACT_EMAIL}.
+        <h3 className="text-2xl font-bold text-foreground mb-3">Quote Request Submitted!</h3>
+        <p className="text-muted-foreground text-sm leading-relaxed mb-2">
+          Thank you, <span className="font-semibold text-foreground">{name}</span>!
         </p>
+        <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+          Your quote request has been received. Our team will contact you at <span className="font-semibold text-foreground">{phone}</span> within 24 hours.
+        </p>
+        
         <div className="bg-card/50 border border-border/30 rounded-lg p-4 mb-5">
-          <p className="text-muted-foreground text-sm leading-relaxed mb-3">
-            Email did not open? Contact us directly:
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a
-              href="tel:8888185001"
-              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground font-bold text-sm rounded-lg hover:bg-primary/90 transition-all"
-            >
-              <Phone className="w-4 h-4" />
-              {PHONE_DISPLAY}
-            </a>
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-border text-foreground font-bold text-sm rounded-lg bg-muted/30 hover:bg-muted/60 transition-all"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-              {CONTACT_EMAIL}
-            </a>
+          <h4 className="text-sm font-bold text-foreground mb-3">Your Request Summary</h4>
+          <div className="grid grid-cols-2 gap-2 text-left text-sm">
+            <div><span className="text-muted-foreground">Part:</span> <span className="font-medium text-foreground">{part || "Not specified"}</span></div>
+            <div><span className="text-muted-foreground">Make:</span> <span className="font-medium text-foreground">{make}</span></div>
+            <div><span className="text-muted-foreground">Model:</span> <span className="font-medium text-foreground">{model || "Not specified"}</span></div>
+            <div><span className="text-muted-foreground">Year:</span> <span className="font-medium text-foreground">{year || "Not specified"}</span></div>
           </div>
         </div>
-        <button
-          onClick={() => {
-            setSuccess(false)
-            setMake(""); setModel(""); setName(""); setPhone("")
-            setEmail(""); setZip(""); setMessage(""); setPart(defaultPart)
-          }}
-          className="text-sm text-primary hover:underline"
-        >
-          Submit another request
-        </button>
+
+        <p className="text-muted-foreground text-xs mb-4">
+          Need immediate assistance? Call us at{" "}
+          <a href={`tel:${PHONE_SALES.replace(/-/g, "")}`} className="text-primary font-bold hover:underline">{PHONE_DISPLAY}</a>
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <a
+            href={`tel:${PHONE_SALES.replace(/-/g, "")}`}
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground font-bold text-sm rounded-lg hover:bg-primary/90 transition-all"
+          >
+            <Phone className="w-4 h-4" />
+            Call Now
+          </a>
+          <button
+            onClick={() => {
+              setSuccess(false)
+              setMake(""); setModel(""); setName(""); setPhone("")
+              setEmail(""); setZip(""); setMessage(""); setPart(defaultPart)
+            }}
+            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-border text-foreground text-sm rounded-lg bg-muted/30 hover:bg-muted/60 transition-all"
+          >
+            Submit Another Request
+          </button>
+        </div>
       </div>
     )
   }
@@ -239,14 +243,45 @@ export function QuoteForm({ defaultPart = "", compact = false }: QuoteFormProps)
           <div className="mt-auto pt-3 sm:pt-4">
             <button
               type="submit"
-              className="w-full flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-900 border-2 border-zinc-500 text-zinc-100 font-bold text-base hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_12px_rgba(0,0,0,0.5)]"
+              disabled={loading}
+              className="w-full flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-b from-zinc-700 via-zinc-800 to-zinc-900 border-2 border-zinc-500 text-zinc-100 font-bold text-base hover:-translate-y-0.5 transition-all shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_4px_12px_rgba(0,0,0,0.5)] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-              GET A QUOTE
+              {loading ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Submitting...
+                </>
+              ) : (
+                <>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                  GET A QUOTE
+                </>
+              )}
             </button>
-            <p className="text-[9px] sm:text-[10px] text-muted-foreground mt-2 sm:mt-3 leading-relaxed">
-              Clicking the button will open your email client with your quote details pre-filled to send to {CONTACT_EMAIL}.
+            <p className="text-[9px] sm:text-[10px] text-muted-foreground mt-2 sm:mt-3 leading-relaxed text-center">
+              No spam, no obligation. We&apos;ll contact you within 24 hours.
             </p>
+          </div>
+
+          {/* Fallback contact info */}
+          <div className="mt-4 pt-4 border-t border-border/30">
+            <p className="text-[10px] text-muted-foreground text-center mb-2">Or contact us directly:</p>
+            <div className="flex flex-wrap gap-2 justify-center">
+              <a 
+                href={`tel:${PHONE_SALES.replace(/-/g, "")}`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-bold text-foreground border border-border/50 rounded-lg hover:border-primary/50 hover:text-primary transition-all"
+              >
+                <Phone className="w-3 h-3" /> {PHONE_DISPLAY}
+              </a>
+              <button 
+                type="button"
+                onClick={copyEmail}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-[10px] font-bold text-foreground border border-border/50 rounded-lg hover:border-primary/50 hover:text-primary transition-all"
+              >
+                {copied ? <Check className="w-3 h-3 text-green-400" /> : <Copy className="w-3 h-3" />}
+                {copied ? "Copied!" : CONTACT_EMAIL}
+              </button>
+            </div>
           </div>
         </form>
       </div>
