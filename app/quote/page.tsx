@@ -4,7 +4,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { BrandLogosSection } from "@/components/brand-logos"
 
-import { Zap, Shield, Truck, Phone, DollarSign, Mail, CheckCircle2, AlertCircle, Loader2, Copy, Check } from "lucide-react"
+import { Zap, Shield, Truck, Phone, DollarSign, Mail, CheckCircle2, AlertCircle, Copy, Check } from "lucide-react"
 import { CAR_MAKES, CAR_MODELS, PART_CATEGORIES, YEARS, US_STATES, PHONE_DISPLAY, PHONE_SALES } from "@/lib/data"
 import { getPartOptions } from "@/lib/parts-content"
 import { useState } from "react"
@@ -25,14 +25,13 @@ export default function QuotePage() {
   const [message, setMessage] = useState("")
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const models = make ? CAR_MODELS[make] || [] : []
   const partOptions = part ? getPartOptions(part) : []
   const selectClass = "w-full text-sm px-3 py-2.5 bg-[rgba(13,15,22,0.75)] border border-border/50 rounded-lg text-foreground appearance-none focus:border-primary/55 focus:ring-1 focus:ring-primary/20 outline-none transition-all"
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setError(null)
 
@@ -40,27 +39,47 @@ export default function QuotePage() {
     if (!name.trim()) { setError("Please enter your name."); return }
     if (!phone.trim()) { setError("Please enter your phone number."); return }
 
-    setLoading(true)
+    // Build email subject
+    const subject = `Quote Request: ${year ? year + " " : ""}${make}${model ? " " + model : ""} - ${part || "Auto Part"}`
+    
+    // Build email body with all form details
+    const body = `
+QUOTE REQUEST FROM AUAPW.ORG
+=============================
 
-    try {
-      const res = await fetch("/api/quote", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ part, make, model, year, option, name, phone, email, state, zip, message }),
-      })
-      
-      const data = await res.json()
-      
-      if (!res.ok) {
-        throw new Error(data.error || "Submission failed")
-      }
-      
+CUSTOMER INFORMATION:
+- Name: ${name}
+- Phone: ${phone}
+- Email: ${email || "Not provided"}
+- State: ${state || "Not specified"}
+- ZIP Code: ${zip || "Not specified"}
+
+VEHICLE DETAILS:
+- Make: ${make}
+- Model: ${model || "Not specified"}
+- Year: ${year || "Not specified"}
+
+PART DETAILS:
+- Part Needed: ${part || "Not specified"}
+- Option: ${option || "Not specified"}
+
+ADDITIONAL NOTES:
+${message || "None"}
+
+=============================
+Submitted via AUAPW.ORG Quote Form
+    `.trim()
+
+    // Open email client with pre-filled data
+    const mailtoLink = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    
+    // Open mailto link - this will open Gmail/Mail app
+    window.location.href = mailtoLink
+    
+    // Show success after a short delay
+    setTimeout(() => {
       setSuccess(true)
-    } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please call us directly.")
-    } finally {
-      setLoading(false)
-    }
+    }, 500)
   }
 
   function copyEmail() {
@@ -255,20 +274,10 @@ export default function QuotePage() {
 
                     <button 
                       type="submit" 
-                      disabled={loading}
-                      className="btn-led w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-[0.75rem] font-bold tracking-[0.18em] uppercase rounded-lg transition-all shadow-lg hover:shadow-xl hover:shadow-primary/20 mt-8 disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="btn-led w-full inline-flex items-center justify-center gap-2 px-6 py-4 text-[0.75rem] font-bold tracking-[0.18em] uppercase rounded-lg transition-all shadow-lg hover:shadow-xl hover:shadow-primary/20 mt-8"
                     >
-                      {loading ? (
-                        <>
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                          Submitting...
-                        </>
-                      ) : (
-                        <>
-                          <Mail className="w-4 h-4" />
-                          Get A Quote
-                        </>
-                      )}
+                      <Mail className="w-4 h-4" />
+                      Get A Quote
                     </button>
                     <p className="text-[11px] text-muted-foreground text-center">
                       No spam, no obligation. We&apos;ll contact you within 24 hours.
