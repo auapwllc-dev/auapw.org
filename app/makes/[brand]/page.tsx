@@ -4,9 +4,10 @@ import { useParams } from "next/navigation"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { BrandLogosSection } from "@/components/brand-logos"
-import { CAR_MAKES, CAR_MODELS, BRAND_COLORS, PART_CATEGORIES, MODEL_YEAR_RANGES, getBrandLogoUrl, getBrandCarImageUrl, PHONE_SALES, PHONE_DISPLAY } from "@/lib/data"
+import { CAR_MAKES, CAR_MODELS, BRAND_COLORS, PART_CATEGORIES, MODEL_YEAR_RANGES, getBrandLogoUrl, getBrandCarImageUrl, PHONE_SALES, PHONE_DISPLAY, AUTO_PARTS_INVENTORY } from "@/lib/data"
 import { ALL_PARTS, getBrandContent } from "@/lib/parts-content"
 import { Search, Phone, ArrowLeft, Shield, Clock, Truck, Star, ChevronDown, Package, Undo2, Globe, Headphones } from "lucide-react"
+import { MetallicPartButton, MetallicGetQuoteButton } from "@/components/ui/metallic-part-button"
 import Link from "next/link"
 import Image from "next/image"
 import { useState, useMemo } from "react"
@@ -230,18 +231,19 @@ export default function BrandPage() {
           <h2 className="text-2xl font-bold mb-2">{brand} Available Parts</h2>
           <p className="text-sm text-muted-foreground mb-8 max-w-xl">{brandContent.partsIntro}</p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {ALL_PARTS.map((part) => (
-              <Link
+          <div className="flex flex-wrap gap-3">
+            {AUTO_PARTS_INVENTORY.map((part) => (
+              <MetallicPartButton
                 key={part.slug}
+                partName={part.name}
+                status={part.status}
                 href={`/search?make=${encodeURIComponent(brand)}&part=${encodeURIComponent(part.name)}`}
-                className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border/50 bg-card hover:bg-card/80 hover:border-primary/30 transition-all group"
-              >
-                <Package className="w-4 h-4 text-primary flex-shrink-0" />
-                <span className="text-sm font-medium group-hover:text-primary transition-colors">{part.name}</span>
-                <span className="ml-auto text-[10px] px-2 py-0.5 rounded bg-green-500/10 text-green-400 border border-green-500/20 font-semibold">In Stock</span>
-              </Link>
+                size="sm"
+              />
             ))}
+          </div>
+          <div className="flex justify-center mt-8">
+            <MetallicGetQuoteButton size="lg" />
           </div>
         </section>
 

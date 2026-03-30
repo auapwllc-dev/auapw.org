@@ -4,6 +4,7 @@ import { BrandWordmark } from "@/components/brand-wordmark"
 import { BrandEmblem3D } from "@/components/brand-emblem-3d"
 import { Logo } from "@/components/logo"
 import { MetallicButton, FindYourPartButton, GetQuoteButton, EmailUsButton, CallNowButton } from "@/components/ui/metallic-button"
+import { MetallicPartButton, MetallicGetQuoteButton } from "@/components/ui/metallic-part-button"
 
 export function HeroSection() {
   return (
@@ -255,6 +256,24 @@ export function HeroSection() {
                   </div>
                 </div>
 
+              </div>
+            </div>
+
+            {/* Featured Parts with Metallic Buttons */}
+            <div className="w-full pt-6 border-t border-white/10">
+              <h2 className="text-primary font-bold tracking-wide text-center text-lg sm:text-xl mb-6 uppercase">Popular Parts In Stock</h2>
+              <div className="flex flex-wrap justify-center gap-3">
+                <MetallicPartButton partName="Engine" status="In Stock" href="/quote?part=engine" size="md" />
+                <MetallicPartButton partName="Transmission" status="In Stock" href="/quote?part=transmission" size="md" />
+                <MetallicPartButton partName="Transfer Case" status="In Stock" href="/quote?part=transfer-case" size="md" />
+                <MetallicPartButton partName="Turbo Charger" status="In Stock" href="/quote?part=turbo-charger" size="md" />
+                <MetallicPartButton partName="CV Pump" status="In Stock" href="/quote?part=cv-pump" size="md" />
+                <MetallicPartButton partName="AC Compressor" status="In Stock" href="/quote?part=ac-compressor" size="md" />
+                <MetallicPartButton partName="Radiator" status="In Stock" href="/quote?part=radiator" size="md" />
+                <MetallicPartButton partName="Alternator" status="In Stock" href="/quote?part=alternator" size="md" />
+              </div>
+              <div className="flex justify-center mt-6">
+                <MetallicGetQuoteButton size="lg" />
               </div>
             </div>
 

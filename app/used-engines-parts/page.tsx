@@ -4,9 +4,10 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { BrandLogosSection } from "@/components/brand-logos"
 
-import { PART_CATEGORIES, CAR_MAKES, PHONE_DISPLAY, PHONE_SALES } from "@/lib/data"
+import { PART_CATEGORIES, CAR_MAKES, PHONE_DISPLAY, PHONE_SALES, AUTO_PARTS_INVENTORY } from "@/lib/data"
 import Link from "next/link"
 import { Search, Phone, MessageSquare, Shield, Truck, Clock, Package, Wrench } from "lucide-react"
+import { MetallicPartButton, MetallicGetQuoteButton } from "@/components/ui/metallic-part-button"
 
 const CATEGORY = PART_CATEGORIES.find(c => c.id === "engines")!
 
@@ -58,31 +59,22 @@ export default function UsedEnginesPartsPage() {
           </div>
         </div>
 
-        {/* All Engine Parts */}
+        {/* All Engine Parts with Metallic Buttons */}
         <div className="mx-auto max-w-[1280px] px-6 py-8">
           <h2 className="text-2xl font-bold mb-6">All Engine Parts</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {CATEGORY.parts.map((part) => (
-              <Link
-                key={part}
-                href={`/search?part=${encodeURIComponent(part)}`}
-                className="group embossed-col rounded-lg p-6 transition-all hover:-translate-y-0.5 hover:border-primary/30"
-              >
-                <div className="flex items-start gap-3">
-                  <div className="metal-icon-wrap">
-                    <Wrench className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  </div>
-                  <div>
-                    <h3 className="text-[15px] font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{part}</h3>
-                    <p className="text-xs text-muted-foreground mb-3">Available from 2,000+ yards nationwide</p>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-2 py-1 bg-green-500/10 text-green-400 border border-green-500/20 text-[10px] font-semibold uppercase rounded-sm">In Stock</span>
-                      <span className="px-2 py-1 bg-secondary border border-border/40 text-[10px] font-semibold text-muted-foreground rounded-sm">Warranty</span>
-                    </div>
-                  </div>
-                </div>
-              </Link>
+          <div className="flex flex-wrap gap-3">
+            {AUTO_PARTS_INVENTORY.filter(p => p.category === "engines").map((part) => (
+              <MetallicPartButton
+                key={part.slug}
+                partName={part.name}
+                status={part.status}
+                href={`/search?part=${encodeURIComponent(part.name)}`}
+                size="md"
+              />
             ))}
+          </div>
+          <div className="flex justify-center mt-8">
+            <MetallicGetQuoteButton size="lg" />
           </div>
         </div>
 
@@ -108,15 +100,7 @@ export default function UsedEnginesPartsPage() {
             <h3 className="font-serif text-xl font-semibold text-foreground mb-2">Need Help Finding an Engine Part?</h3>
             <p className="text-sm text-muted-foreground mb-6">Our experts can help you find the exact part for your vehicle.</p>
             <div className="flex gap-3 justify-center flex-wrap">
-              <Link href="/search" className="btn-led metal-btn inline-flex items-center justify-center gap-2 px-5 py-3 text-[0.68rem] font-bold tracking-[0.18em] uppercase rounded-sm">
-                <Search className="w-3.5 h-3.5" /> Search Parts
-              </Link>
-              <a href={`tel:${PHONE_SALES.replace(/-/g, "")}`} className="metal-btn inline-flex items-center justify-center gap-2 px-5 py-3 text-[0.65rem] font-bold tracking-[0.18em] uppercase rounded-sm">
-                <Phone className="w-3 h-3" /> {PHONE_DISPLAY}
-              </a>
-              <Link href="/quote" className="metal-btn inline-flex items-center justify-center gap-2 px-5 py-3 text-[0.65rem] font-bold tracking-[0.18em] uppercase rounded-sm">
-                <MessageSquare className="w-3 h-3" /> Free Quote
-              </Link>
+              <MetallicGetQuoteButton size="lg" />
             </div>
           </div>
         </div>

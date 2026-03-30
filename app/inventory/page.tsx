@@ -1,9 +1,10 @@
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-
 import { BrandLogosSection } from "@/components/brand-logos"
 import Link from "next/link"
 import { Search, Zap, Package, MapPin } from "lucide-react"
+import { MetallicPartButton, MetallicGetQuoteButton } from "@/components/ui/metallic-part-button"
+import { AUTO_PARTS_INVENTORY } from "@/lib/data"
 
 export const metadata = {
   title: "Inventory | AUAPW.ORG",
@@ -89,15 +90,29 @@ export default function InventoryPage() {
             </div>
           </div>
 
+          {/* All Parts with Metallic Buttons */}
+          <div className="mb-12">
+            <h2 className="text-xl sm:text-2xl font-bold mb-6">All Parts In Stock</h2>
+            <div className="flex flex-wrap gap-3">
+              {AUTO_PARTS_INVENTORY.map((part) => (
+                <MetallicPartButton
+                  key={part.slug}
+                  partName={part.name}
+                  status={part.status}
+                  href={`/quote?part=${part.slug}`}
+                  size="sm"
+                />
+              ))}
+            </div>
+            <div className="flex justify-center mt-8">
+              <MetallicGetQuoteButton size="lg" />
+            </div>
+          </div>
+
           <div className="bg-secondary/40 border border-border/50 rounded-lg p-5 sm:p-8 text-center">
             <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Looking for a Specific Part?</h3>
             <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">Contact our team and we&apos;ll search our entire network to find exactly what you need.</p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-all"
-            >
-              Get a Quote
-            </Link>
+            <MetallicGetQuoteButton size="md" />
           </div>
         </div>
 
