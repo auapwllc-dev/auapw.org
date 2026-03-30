@@ -157,19 +157,19 @@ export function Footer() {
         </div>
 
         {/* Main Grid */}
-        <div className="mx-auto max-w-7xl px-4 md:px-6 py-8 md:py-12 bg-zinc-950/30">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-10">
+        <div className="mx-auto max-w-7xl px-4 md:px-6 py-4 md:py-6 bg-zinc-950/30">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5">
             
             {/* Brand & Contact Column */}
             <div className="lg:col-span-4">
               {/* Logo & Brand */}
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-2 mb-3">
                 <Logo size="sm" variant="ring" />
                 <BrandWordmark size="footer" />
               </div>
               
               {/* Contact Buttons - Equal Size */}
-              <div className="grid grid-cols-1 gap-3 mt-2">
+              <div className="grid grid-cols-1 gap-2">
                 <CallNowButton className="w-full" />
                 <EmailUsButton className="w-full" />
                 <LocationButton className="w-full" />
@@ -178,10 +178,10 @@ export function Footer() {
 
             {/* Links Columns */}
             <div className="lg:col-span-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                 
                 {/* Popular Parts */}
-                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
+                <div className="relative p-3 md:p-4 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
                   {/* Background Metallic Gear Image */}
                   <Image 
                     src="/images/footer/gear.png" 
@@ -213,7 +213,7 @@ export function Footer() {
                 </div>
 
                 {/* Popular Makes */}
-                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
+                <div className="relative p-3 md:p-4 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
                   {/* Background Metallic Car Image */}
                   <Image 
                     src="/images/footer/car.png" 
@@ -245,7 +245,7 @@ export function Footer() {
                 </div>
 
                 {/* Quick Links */}
-                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
+                <div className="relative p-3 md:p-4 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
                   {/* Background Metallic SUV Image */}
                   <Image 
                     src="/images/footer/suv.png" 
@@ -282,7 +282,7 @@ export function Footer() {
                 </div>
 
                 {/* Policies */}
-                <div className="relative p-4 md:p-5 rounded-xl bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
+                <div className="relative p-3 md:p-4 rounded-lg bg-zinc-900/30 backdrop-blur-sm border border-zinc-700/20 overflow-hidden">
                   {/* Background Metallic Shield Image */}
                   <Image 
                     src="/images/footer/shield.png" 
